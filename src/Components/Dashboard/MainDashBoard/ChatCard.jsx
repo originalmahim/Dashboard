@@ -78,7 +78,7 @@ const ChatCard = () => {
               ></span>
             </div>
 
-            <div className="flex flex-1 items-center justify-between">
+            <div className="flex flex-1 items-center justify-between text-black dark:text-white">
               <div>
                 <h5 className="font-medium text-black dark:text-white">
                   {chat.name}
@@ -87,7 +87,7 @@ const ChatCard = () => {
                   <span className="text-sm text-black dark:text-white">
                     {chat.text}
                   </span>
-                  <span className="text-xs"> . {chat.time} min</span>
+                  <span className="text-xs"> . {chat.time} min ago</span>
                 </p>
               </div>
               {chat.textCount !== 0 && (

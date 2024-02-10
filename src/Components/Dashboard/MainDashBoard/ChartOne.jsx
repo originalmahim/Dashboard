@@ -44,7 +44,7 @@ const options = {
     },
   ],
   stroke: {
-    width: [2, 2],
+    width: [1, 1],
     curve: 'straight',
   },
   grid: {
@@ -64,10 +64,10 @@ const options = {
   },
   markers: {
     size: 4,
-    colors: '#fff',
+    colors: '#e6dfdf',
     strokeColors: ['#3056D3', '#80CAEE'],
     strokeWidth: 3,
-    strokeOpacity: 0.9,
+    strokeOpacity: 0.5,
     strokeDashArray: 0,
     fillOpacity: 1,
     discrete: [],
@@ -132,7 +132,7 @@ const ChartOne = () => {
   };
 
   return (
-          <div className="col-span-12 rounded-sm border border-stroke bg-white px-5 pt-7.5 pb-5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8">
+          <div className="col-span-12 rounded-sm border border-stroke bg-white px-5 pt-7.5 pb-5 shadow-default dark:border-strokedark dark:bg-boxdark  sm:px-7.5 xl:col-span-8">
           <div className="flex flex-wrap items-start justify-between gap-3 sm:flex-nowrap">
             <div className="flex w-full flex-wrap gap-3 sm:gap-5">
               <div className="flex min-w-47.5">
@@ -141,7 +141,7 @@ const ChartOne = () => {
                 </span>
                 <div className="w-full">
                   <p className="font-semibold text-primary">Total Revenue</p>
-                  <p className="text-sm font-medium">12.04.2022 - 12.05.2022</p>
+                  <p className="text-sm font-medium dark:text-white text-black-2">12.04.2022 - 12.05.2022</p>
                 </div>
               </div>
               <div className="flex min-w-47.5">
@@ -150,7 +150,7 @@ const ChartOne = () => {
                 </span>
                 <div className="w-full">
                   <p className="font-semibold text-secondary">Total Sales</p>
-                  <p className="text-sm font-medium">12.04.2022 - 12.05.2022</p>
+                  <p className="text-sm font-medium dark:text-white text-black-2">12.04.2022 - 12.05.2022</p>
                 </div>
               </div>
             </div>
@@ -170,8 +170,9 @@ const ChartOne = () => {
           </div>
     
           <div>
-            <div id="chartOne" className="-ml-5">
+            <div id="chartOne" className="-ml-5 ">
               <ReactApexChart
+          
                 options={options}
                 series={state.series}
                 type="area"
