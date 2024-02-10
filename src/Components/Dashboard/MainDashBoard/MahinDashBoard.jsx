@@ -2,6 +2,7 @@ import DefaultLayout from '../DefaultLayout/DefaultLayout';
 import CardDataStats from './CardDataStats';
 import ChartOne from './ChartOne';
 import ChartTwo from './ChartTwo';
+import ChatCard from './ChatCard';
 import TableOne from './TableOne';
 
 
@@ -102,7 +103,7 @@ const MahinDashBoard = () => {
         <div className="col-span-12 xl:col-span-8">
           <TableOne />
         </div>
-        {/* <ChatCard /> */}
+        <ChatCard />
       </div>
     </DefaultLayout>
   );
