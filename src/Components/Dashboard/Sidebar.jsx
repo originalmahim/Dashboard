@@ -1,6 +1,6 @@
 import  { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-// import Logo from '../../images/andalib.png';
+ import Logo from './DashImage/logo/andalib.png';
 import { IoIosListBox } from "react-icons/io";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
@@ -59,7 +59,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     >
       <div className="flex items-center justify-around gap-2 px-2 py-2 lg:py-2">
         <NavLink to="/">
-          {/* <img className='w-40 lg:mt-4 ' src={Logo} alt="Logo" /> */}
+          <img className='w-40 lg:mt-4 ' src={Logo} alt="Logo" />
         </NavLink>
 
         <button

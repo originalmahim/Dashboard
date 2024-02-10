@@ -7,7 +7,8 @@ import {
 import './index.css'
 import Sidebar from './Components/Dashboard/Sidebar';
 import Header from './Components/Dashboard/Header/Header';
-import DefaultLayout from './Components/DefaultLayout/DefaultLayout';
+import DefaultLayout from './Components/Dashboard/DefaultLayout/DefaultLayout';
+
 
 const router = createBrowserRouter([
   {

@@ -1,6 +1,7 @@
 import  { useState } from 'react';
-import Sidebar from '../Dashboard/Sidebar';
-import Header from '../Dashboard/Header/Header';
+import Sidebar from '../Sidebar';
+import Header from '../Header/Header';
+
 
 
 const DefaultLayout = ({ children }) => {
