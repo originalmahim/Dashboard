@@ -8,6 +8,7 @@ import './index.css'
 import Sidebar from './Components/Dashboard/Sidebar';
 import Header from './Components/Dashboard/Header/Header';
 import DefaultLayout from './Components/Dashboard/DefaultLayout/DefaultLayout';
+import MahinDashBoard from './Components/Dashboard/MainDashBoard/MahinDashBoard';
 
 
 const router = createBrowserRouter([
@@ -20,9 +21,14 @@ const router = createBrowserRouter([
     element: <Header></Header>
   },
   {
-    path: '/',
+    path: '/Layout',
     element: <DefaultLayout></DefaultLayout>
+  },
+  {
+    path: '/',
+    element: <MahinDashBoard></MahinDashBoard>
   }
+
 
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
