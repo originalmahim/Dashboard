@@ -1,10 +1,11 @@
 
-import CardDataStats from '../../components/CardDataStats';
 import ChartOne from '../../components/Charts/ChartOne';
 import ChartTwo from '../../components/Charts/ChartTwo';
 import ChatCard from '../../components/Chat/ChatCard';
 import TableOne from '../../components/Tables/TableOne';
-import DefaultLayout from '../../layout/DefaultLayout';
+import DefaultLayout from '../DefaultLayout/DefaultLayout';
+import CardDataStats from './CardDataStats';
+
 
 const MahinDashBoard = () => {
   return (
