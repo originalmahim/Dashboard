@@ -7,15 +7,22 @@ import {
 import './index.css'
 import Sidebar from './Components/Dashboard/Sidebar';
 import Header from './Components/Dashboard/Header/Header';
+import DefaultLayout from './Components/DefaultLayout/DefaultLayout';
+
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/slider",
     element: <Sidebar></Sidebar>,
   },
   {
     path: '/header',
     element: <Header></Header>
+  },
+  {
+    path: '/',
+    element: <DefaultLayout></DefaultLayout>
   }
+
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
