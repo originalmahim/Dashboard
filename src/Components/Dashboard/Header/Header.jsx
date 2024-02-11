@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import DropdownUser from './DropdownUser';
 import DarkModeSwitcher from '../DarkModeSwitcher';
 import DropdownNotification from '../DropdownNotification';
- import LogoIcon from './../DashImage/logo/logo-icon.svg';
+ import LogoIcon from './../DashImage/logo/small.png';
 
 
 const Header = (props) => {
@@ -54,7 +54,7 @@ const Header = (props) => {
           {/* <!-- Hamburger Toggle BTN --> */}
 
           <Link className="block flex-shrink-0 lg:hidden" to="/">
-            <img src={LogoIcon} alt="Logo" />
+            <img className='w-9' src={LogoIcon} alt="Logo" />
           </Link>
         </div>
 
