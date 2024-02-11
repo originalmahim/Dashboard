@@ -132,7 +132,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               
               <li>
                 <NavLink
-                  to="/profile"
+                  to="/Users"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black duration-300 ease-in-out   ${
                     pathname.includes('profile') && 'bg-pink-400 '
                   }`}

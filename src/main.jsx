@@ -11,6 +11,7 @@ import DefaultLayout from './Components/Dashboard/DefaultLayout/DefaultLayout';
 import MahinDashBoard from './Components/Dashboard/MainDashBoard/MahinDashBoard';
 import Tables from './Components/Dashboard/MainDashBoard/Tables';
 import Product from './Components/Dashboard/Tables/Product';
+import Users from './Components/Dashboard/Tables/Users';
 
 
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: '/Products',
     element: <Product></Product>
+  },
+  {
+    path: '/Users',
+    element: <Users></Users>
   }
 
 
