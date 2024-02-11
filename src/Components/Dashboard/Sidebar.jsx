@@ -160,7 +160,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               
               <li>
                 <NavLink
-                  to="/tables"
+                  to="/orders"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black duration-300 ease-in-out hover:bg-pink-400 dark:hover:bg-meta-4 ${
                     pathname.includes('tables') && 'bg-pink-400 dark:bg-meta-4'
                   }`}
@@ -196,7 +196,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               
               <li>
                 <NavLink
-                  to="/settings"
+                  to="/Products"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black duration-300 ease-in-out hover:bg-pink-400 dark:hover:bg-meta-4 ${
                     pathname.includes('settings') &&
                     'bg-pink-400'
