@@ -60,9 +60,6 @@ const packageData = [
                       <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                         Role
                       </th>
-                      <th className="py-4 px-4 font-medium text-black dark:text-white">
-                        Actions
-                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -96,15 +93,7 @@ const packageData = [
                             {packageItem.status}
                           </p>
                         </td>
-                        <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                          <div className="flex items-center space-x-3.5">
-                          {packageItem.status === 'Member' && <button className="hover:text-primary bg-pink-400 dark:bg-violet-400 rounded-md p-2 text-white text-sm">
-                              Make Admin
-                            </button> } 
-                            
-                          
-                          </div>
-                        </td>
+                        
                       </tr>
                     ))}
                   </tbody>

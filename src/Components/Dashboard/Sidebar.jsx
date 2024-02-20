@@ -96,9 +96,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               
               <li>
                 <NavLink
-                  to="/"
+                  to="/dashboard"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black duration-300 ease-in-out   ${
-                    pathname.includes('dashboard') && 'bg-pink-400 '
+                    pathname.includes('dashboard') && 'bg-pink-400 text-white dark:bg-meta-4'
                   }`}
                 >
                   <svg
@@ -134,7 +134,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 <NavLink
                   to="/Users"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black duration-300 ease-in-out   ${
-                    pathname.includes('profile') && 'bg-pink-400 '
+                    pathname.includes('Users') && 'bg-pink-400 text-white dark:bg-meta-4'
                   }`}
                 >
                   <svg
@@ -162,7 +162,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 <NavLink
                   to="/orders"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black duration-300 ease-in-out hover:bg-pink-400 dark:hover:bg-meta-4 ${
-                    pathname.includes('tables') && 'bg-pink-400 dark:bg-meta-4'
+                    pathname.includes('orders') && 'bg-pink-400 text-white dark:bg-meta-4'
                   }`}
                 >
                   <svg
@@ -198,8 +198,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 <NavLink
                   to="/Products"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black duration-300 ease-in-out hover:bg-pink-400 dark:hover:bg-meta-4 ${
-                    pathname.includes('settings') &&
-                    'bg-pink-400'
+                    pathname.includes('Products') &&
+                    'bg-pink-400 text-white dark:bg-meta-4'
                   }`}
                 >
                   <IoIosListBox></IoIosListBox>

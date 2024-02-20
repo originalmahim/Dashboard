@@ -1,6 +1,6 @@
 
+import DefaultLayout from '../DefaultLayout/DefaultLayout';
 import Orders from '../Tables/Orders';
-import DefaultLayout from './../DefaultLayout/DefaultLayout';
 
 
 const Tables = () => {
@@ -10,6 +10,7 @@ const Tables = () => {
        <Orders></Orders>
       </div>
     </DefaultLayout>
+    
   );
 };
 
