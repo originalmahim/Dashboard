@@ -7,7 +7,7 @@ import { WholewebsiteContex } from '../Authentication/AuthProvider';
 
 const DropdownUser = () => {
 
-  const {logOut} = useContext(WholewebsiteContex)
+  const {logOut, user} = useContext(WholewebsiteContex)
   const handleLogOut = () => {
     logOut()
     .then(() => {
@@ -49,6 +49,7 @@ const DropdownUser = () => {
     document.addEventListener('keydown', keyHandler);
     return () => document.removeEventListener('keydown', keyHandler);
   });
+  console.log(user.displayName);
 
   return (
     <div className="relative">
