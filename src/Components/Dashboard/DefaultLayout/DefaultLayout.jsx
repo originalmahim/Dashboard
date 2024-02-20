@@ -1,10 +1,11 @@
 import  { useState } from 'react';
 import Sidebar from '../Sidebar';
 import Header from '../Header/Header';
+import { Outlet } from 'react-router-dom';
 
 
 
-const DefaultLayout = ({ children }) => {
+const DefaultLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -24,7 +25,7 @@ const DefaultLayout = ({ children }) => {
           {/* <!-- ===== Main Content Start ===== --> */}
           <main>
             <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-              {children}
+              <Outlet></Outlet>
             </div>
           </main>
           {/* <!-- ===== Main Content End ===== --> */}

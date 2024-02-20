@@ -96,9 +96,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               
               <li>
                 <NavLink
-                  to="/dashboard"
+                  to="overview"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black duration-300 ease-in-out   ${
-                    pathname.includes('dashboard') && 'bg-pink-400 text-white dark:bg-meta-4'
+                    pathname.includes('overview') && 'bg-pink-400 text-white dark:bg-meta-4'
                   }`}
                 >
                   <svg
@@ -132,7 +132,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               
               <li>
                 <NavLink
-                  to="/Users"
+                  to="Users"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black duration-300 ease-in-out   ${
                     pathname.includes('Users') && 'bg-pink-400 text-white dark:bg-meta-4'
                   }`}
@@ -160,7 +160,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               
               <li>
                 <NavLink
-                  to="/orders"
+                  to="orders"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black duration-300 ease-in-out hover:bg-pink-400 dark:hover:bg-meta-4 ${
                     pathname.includes('orders') && 'bg-pink-400 text-white dark:bg-meta-4'
                   }`}
@@ -196,7 +196,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               
               <li>
                 <NavLink
-                  to="/Products"
+                  to="Products"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black duration-300 ease-in-out hover:bg-pink-400 dark:hover:bg-meta-4 ${
                     pathname.includes('Products') &&
                     'bg-pink-400 text-white dark:bg-meta-4'

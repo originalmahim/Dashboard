@@ -1,4 +1,4 @@
-import DefaultLayout from '../DefaultLayout/DefaultLayout';
+
 import CardDataStats from './CardDataStats';
 import ChartOne from './ChartOne';
 import ChartTwo from './ChartTwo';
@@ -9,7 +9,7 @@ import TableOne from './TableOne';
 
 const MahinDashBoard = () => {
   return (
-    <DefaultLayout>
+  <div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
         <CardDataStats title="Total website views" total="3.456K" rate="0.43%" levelUp>
           <svg
@@ -105,7 +105,7 @@ const MahinDashBoard = () => {
         </div>
         <ChatCard />
       </div>
-    </DefaultLayout>
+    </div>
   );
 };
 

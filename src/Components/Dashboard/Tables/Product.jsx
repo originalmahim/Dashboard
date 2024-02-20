@@ -3,7 +3,6 @@ import ProductOne from './../DashImage/product/product-01.png';
 import ProductTwo from './../DashImage/product/product-02.png';
 import ProductThree from './../DashImage/product/product-03.png';
 import ProductFour from './../DashImage/product/product-04.png';
-import DefaultLayout from '../DefaultLayout/DefaultLayout';
 import { LuPenSquare } from "react-icons/lu";
 
 const productData = [
@@ -43,7 +42,7 @@ const productData = [
 
 const Product = () => {
   return (
-    <DefaultLayout>
+    <div>
       <div className="flex flex-col gap-10">
     <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
       <div className="py-6 px-4 md:px-6 xl:px-7.5">
@@ -154,7 +153,7 @@ const Product = () => {
       ))}
     </div>
       </div>
-    </DefaultLayout>
+    </div>
   );
 };
 
