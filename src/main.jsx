@@ -16,7 +16,12 @@ import PrivateRaute from './Components/Dashboard/Authentication/PrivateRaute';
 import Error from './Components/Dashboard/Authentication/Error';
 import DefaultLayout from './Components/Dashboard/DefaultLayout/DefaultLayout';
 import Settings from './Components/Dashboard/Header/Settings';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -62,7 +67,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
+      <QueryClientProvider client={queryClient} >
         <RouterProvider router={router} />
+      </QueryClientProvider>
     </AuthProvider>
   </React.StrictMode>,
 )
