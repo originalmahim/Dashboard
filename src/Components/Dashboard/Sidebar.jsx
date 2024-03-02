@@ -2,6 +2,7 @@ import  { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
  import Logo from './DashImage/logo/andalib.png';
 import { IoIosListBox } from "react-icons/io";
+import { CiDiscount1 } from "react-icons/ci";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const location = useLocation();
@@ -204,6 +205,18 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 >
                   <IoIosListBox></IoIosListBox>
                   Manage Products
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="Cupons"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black duration-300 ease-in-out hover:bg-pink-400 dark:hover:bg-meta-4 ${
+                    pathname.includes('Cupons') &&
+                    'bg-pink-400 text-white dark:bg-meta-4'
+                  }`}
+                >
+                  <CiDiscount1 className='text-xl'></CiDiscount1>
+                  Manage Cupons
                 </NavLink>
               </li>
               

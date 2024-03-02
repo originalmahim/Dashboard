@@ -8,7 +8,7 @@ const PrivateRaute = ({children}) => {
           const {user,spinner} = useContext(WholewebsiteContex)
           const location = useLocation()
           if (spinner) {
-             return <h1 className="text-center text-4xl text-blue-500 items-center lg:mt-96">Loading...</h1>       
+             return <div className="flex items-center justify-center"><h1 className="text-center text-4xl text-blue-500  lg:mt-96">Loading...</h1></div>        
           }
           if (user) {
             return children        

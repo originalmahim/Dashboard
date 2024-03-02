@@ -6,7 +6,7 @@ const Users = () => {
     queryKey: ['users'],
     queryFn: async () => {
       try {
-        const res = await axios.get('http://localhost:5000/totalusers');
+        const res = await axios.get('https://task-backend-sigma.vercel.app/totalusers');
         return res.data;
       } catch (error) {
         throw new Error('Failed to fetch user data');
@@ -14,7 +14,7 @@ const Users = () => {
     },
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div className="flex items-center justify-center my-20">Loading...</div>;
 
   if (error) return <div>Error: {error.message}</div>;
 

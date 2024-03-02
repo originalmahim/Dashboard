@@ -20,6 +20,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import Cupons from './Components/Dashboard/Tables/Cupons';
 
 const queryClient = new QueryClient();
 
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: 'Products',
         element: <PrivateRaute><Product /></PrivateRaute>
+      },
+      {
+        path: 'Cupons',
+        element: <PrivateRaute><Cupons /></PrivateRaute>
       },
       {
         path: 'profile',
