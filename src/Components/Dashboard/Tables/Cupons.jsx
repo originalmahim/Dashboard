@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LuPenSquare } from "react-icons/lu";
 
 // const productData = [
@@ -35,8 +35,9 @@ import { LuPenSquare } from "react-icons/lu";
 const Cupons = () => {
           const [productData, setProductData] = useState([]);
           
+
   return (
-    <div>
+    <div className="max-w-3xl mx-auto">
       <div className="flex flex-col gap-10">
     <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
       <div className="py-6 px-4 md:px-6 xl:px-7.5">
@@ -45,21 +46,21 @@ const Cupons = () => {
         </h4>
       </div>
 
-      <div className="grid grid-cols-4 border-t text-black dark:text-white border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
+      <div className="grid grid-cols-7 border-t text-black dark:text-white border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 ">
         <div className="col-span-3 flex items-center">
           <p className="font-medium">Cupon Code</p>
         </div>
-        <div className="col-span-1 flex items-center">
+        <div className="col-span-2 flex items-center">
           <p className="font-medium">Discaunt %</p>
         </div>
-        <div className="col-span-1 flex items-center">
+        <div className="col-span-2 flex items-center">
           <p className="font-medium">Action</p>
         </div>
       </div>
 
       {productData.map((product, key) => (
         <div
-          className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
+          className="grid grid-cols-7 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
           key={key}
         >
           <div className="col-span-3 flex items-center">
@@ -76,7 +77,7 @@ const Cupons = () => {
             </p>
           </div>
           
-          <div className="flex items-center space-x-3.5">
+          <div className="flex col-span-3 items-center space-x-3.5">
                     <button className="hover:text-primary text-black dark:text-white">
                     <LuPenSquare></LuPenSquare>
                     </button>

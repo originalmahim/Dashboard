@@ -1,36 +1,58 @@
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { TbCoinTaka } from "react-icons/tb";
-const packageData = [
-  {
-    name: 'Abdul Wadud',
-    price: 0.0,
-    number: '01882972481',
-    invoiceDate: `Jan 13,2023`,
-    status: 'Cash On Delivary',
-  },
-  {
-    name: 'Jannatul Mim',
-    price: 59.0,
-    number: '01882972481',
-    invoiceDate: `Jan 13,2023`,
-    status: 'Cash On Delivary',
-  },
-  {
-    name: 'Rakib Ul Alam',
-    price: 99.0,
-    number: '01882972481',
-    invoiceDate: `Jan 13,2023`,
-    status: 'Unpaid',
-  },
-  {
-    name: 'Sanjida Sultana',
-    price: 59.0,
-    number: '01882972481',
-    invoiceDate: `Jan 13,2023`,
-    status: 'Pending',
-  },
-];
+// const packageData = [
+//   {
+//     name: 'Abdul Wadud',
+//     price: 0.0,
+//     number: '01882972481',
+//     invoiceDate: `Jan 13,2023`,
+//     status: 'Cash On Delivary',
+//   },
+//   {
+//     name: 'Jannatul Mim',
+//     price: 59.0,
+//     number: '01882972481',
+//     invoiceDate: `Jan 13,2023`,
+//     status: 'Cash On Delivary',
+//   },
+//   {
+//     name: 'Rakib Ul Alam',
+//     price: 99.0,
+//     number: '01882972481',
+//     invoiceDate: `Jan 13,2023`,
+//     status: 'Unpaid',
+//   },
+//   {
+//     name: 'Sanjida Sultana',
+//     price: 59.0,
+//     number: '01882972481',
+//     invoiceDate: `Jan 13,2023`,
+//     status: 'Pending',
+//   },
+// ];
+
+
+
 
 const Orders = () => {
+
+  const { data:packageData , isLoading, error, refetch } = useQuery({
+    queryKey: ['packageData'],
+    queryFn: async () => {
+      try {
+        const res = await axios.get('https://task-backend-sigma.vercel.app/orders');
+        return res.data;
+      } catch (error) {
+        throw new Error('Failed to fetch user data');
+      }
+    },
+  }); 
+  
+  if (isLoading) return <div className="flex items-center justify-center my-20">Loading...</div>;
+  
+  if (error) return <div>Error: {error.message}</div>;
+
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <div className="max-w-full overflow-x-auto">
@@ -59,13 +81,13 @@ const Orders = () => {
               <tr key={key}>
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                   <h5 className="font-medium text-black dark:text-white">
-                    {packageItem.name}
+                    {packageItem.fullName}
                   </h5>
                   
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <p className="text-black dark:text-white">
-                    {packageItem.number}
+                    {packageItem.phoneNumber}
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
