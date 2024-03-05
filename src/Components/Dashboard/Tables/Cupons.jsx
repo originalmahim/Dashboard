@@ -1,87 +1,63 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { LuPenSquare } from "react-icons/lu";
 
-// const productData = [
-//   {
-//     name: 'Apple Watch Series 7',
-//     category: 'Electronics',
-//     price: 296,
-//     sold: 22,
-//     profit: 45,
-//   },
-//   {
-//     name: 'Macbook Pro M1',
-//     category: 'Electronics',
-//     price: 546,
-//     sold: 12,
-//     profit: 125,
-//   },
-//   {
-//     name: 'Dell Inspiron 15',
-//     category: 'Electronics',
-//     price: 443,
-//     sold: 64,
-//     profit: 247,
-//   },
-//   {
-//     name: 'HP Probook 450',
-//     category: 'Electronics',
-//     price: 499,
-//     sold: 72,
-//     profit: 103,
-//   },
-// ];
-
 const Cupons = () => {
-          const [productData, setProductData] = useState([]);
-          
+  const { data: productData, isLoading, error, refetch } = useQuery({
+    queryKey: ["productData"],
+    queryFn: async () => {
+      try {
+        const res = await axios.get(
+          "https://task-backend-sigma.vercel.app/cupons"
+        );
+        return res.data;
+      } catch (error) {
+        throw new Error("Failed to fetch user data");
+      }
+    },
+  });
+
+  if (isLoading) return <div className="flex items-center justify-center my-20">Loading...</div>;
+
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <div className="flex flex-col gap-10">
-    <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-      <div className="py-6 px-4 md:px-6 xl:px-7.5">
-        <h4 className="text-xl font-semibold text-black dark:text-white">
-          Active Cupons
-        </h4>
-      </div>
+    <div className="max-w-xl mx-auto ">
+      <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="py-4 px-4 md:px-6 xl:px-7.5">
+          <h4 className="text-xl font-semibold text-black dark:text-white">
+            Active Coupons
+          </h4>
+        </div>
 
-      <div className="grid grid-cols-7 border-t text-black dark:text-white border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 ">
-        <div className="col-span-3 flex items-center">
-          <p className="font-medium">Cupon Code</p>
-        </div>
-        <div className="col-span-2 flex items-center">
-          <p className="font-medium">Discaunt %</p>
-        </div>
-        <div className="col-span-2 flex items-center">
-          <p className="font-medium">Action</p>
-        </div>
-      </div>
-
-      {productData.map((product, key) => (
-        <div
-          className="grid grid-cols-7 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
-          key={key}
-        >
-          <div className="col-span-3 flex items-center">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-              <p className="text-sm text-black dark:text-white">
-                {product.name}
-              </p>
-            </div>
+        <div className="grid grid-cols-6 sm:grid-cols-8 border-t text-black dark:text-white border-stroke py-4.5 px-4 md:px-6">
+          <div className="col-span-2 flex items-center">
+            <p className="font-medium">Coupon Code</p>
           </div>
-          
           <div className="col-span-1 flex items-center">
-            <p className="text-sm text-black dark:text-white">
-              ${product.price}
-            </p>
+            <p className="font-medium">Discount</p>
           </div>
-          
-          <div className="flex col-span-3 items-center space-x-3.5">
-                    <button className="hover:text-primary text-black dark:text-white">
-                    <LuPenSquare></LuPenSquare>
-                    </button>
-                    <button className="hover:text-primary text-black dark:text-white">
+          <div className="col-span-3 flex items-center justify-center">
+            <p className="font-medium">Action</p>
+          </div>
+        </div>
+
+        {productData.map((product, key) => (
+          <div
+            className="grid grid-cols-6 sm:grid-cols-8 border-t border-stroke py-4.5 px-4 md:px-6"
+            key={key}
+          >
+            <div className="col-span-2 flex items-center">
+              <p className="text-sm text-black dark:text-white">{product.code}</p>
+            </div>
+            <div className="col-span-1 flex items-center">
+              <p className="text-sm text-black dark:text-white">{product.discount}%</p>
+            </div>
+            <div className="col-span-3 flex items-center justify-center space-x-3.5">
+              <button className="hover:text-primary text-black dark:text-white">
+                <LuPenSquare />
+              </button>
+              <button className="hover:text-primary text-black dark:text-white">
                       <svg
                         className="fill-current"
                         width="18"
@@ -108,11 +84,14 @@ const Cupons = () => {
                         />
                       </svg>
                     </button>
-                    
-                  </div>
+            </div>
+          </div>
+        ))}
+         <div className="py-4 px-4 md:px-6 flex justify-center">
+          <button className="bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark">
+            Create New Coupon
+          </button>
         </div>
-      ))}
-    </div>
       </div>
     </div>
   );
