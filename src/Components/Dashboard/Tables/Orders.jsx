@@ -1,56 +1,31 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { TbCoinTaka } from "react-icons/tb";
-// const packageData = [
-//   {
-//     name: 'Abdul Wadud',
-//     price: 0.0,
-//     number: '01882972481',
-//     invoiceDate: `Jan 13,2023`,
-//     status: 'Cash On Delivary',
-//   },
-//   {
-//     name: 'Jannatul Mim',
-//     price: 59.0,
-//     number: '01882972481',
-//     invoiceDate: `Jan 13,2023`,
-//     status: 'Cash On Delivary',
-//   },
-//   {
-//     name: 'Rakib Ul Alam',
-//     price: 99.0,
-//     number: '01882972481',
-//     invoiceDate: `Jan 13,2023`,
-//     status: 'Unpaid',
-//   },
-//   {
-//     name: 'Sanjida Sultana',
-//     price: 59.0,
-//     number: '01882972481',
-//     invoiceDate: `Jan 13,2023`,
-//     status: 'Pending',
-//   },
-// ];
-
-
-
 
 const Orders = () => {
+  const [selectedOrder, setSelectedOrder] = useState(null);
 
-  const { data:packageData , isLoading, error, refetch } = useQuery({
-    queryKey: ['packageData'],
+  const { data: packageData, isLoading, error, refetch } = useQuery({
+    queryKey: ["packageData"],
     queryFn: async () => {
       try {
-        const res = await axios.get('https://task-backend-sigma.vercel.app/orders');
+        const res = await axios.get(
+          "https://task-backend-sigma.vercel.app/orders"
+        );
         return res.data;
       } catch (error) {
-        throw new Error('Failed to fetch user data');
+        throw new Error("Failed to fetch user data");
       }
     },
-  }); 
-  
+  });
+
+  const handleOrderClick = (order) => {
+    setSelectedOrder(order);
+    document.getElementById("my_modal_4").showModal();
+  };
+
   if (isLoading) return <div className="flex items-center justify-center my-20">Loading...</div>;
-  
+
   if (error) return <div>Error: {error.message}</div>;
 
   return (
@@ -60,7 +35,7 @@ const Orders = () => {
           <thead>
             <tr className="bg-gray-2 text-left dark:bg-meta-4">
               <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
-                Details
+                Name
               </th>
               <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
                 Number
@@ -69,7 +44,7 @@ const Orders = () => {
                 Order date
               </th>
               <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
-               Payment Status
+                Payment Method
               </th>
               <th className="py-4 px-4 font-medium text-black dark:text-white">
                 Actions
@@ -83,7 +58,6 @@ const Orders = () => {
                   <h5 className="font-medium text-black dark:text-white">
                     {packageItem.fullName}
                   </h5>
-                  
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <p className="text-black dark:text-white">
@@ -92,25 +66,19 @@ const Orders = () => {
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <p className="text-black dark:text-white">
-                    {packageItem.invoiceDate}
+                    {packageItem.invoiceDate
+                      ? packageItem.invoiceDate
+                      : "2 Jan 2024"}
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p
-                    className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${
-                      packageItem.status === 'Cash On Delivary'
-                        ? 'bg-success text-success'
-                        : packageItem.status === 'Unpaid'
-                        ? 'bg-danger text-danger'
-                        : 'bg-warning text-warning'
-                    }`}
-                  >
-                    {packageItem.status}
+                  <p className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium bg-success text-success`}>
+                    Cash On Delivery
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <div className="flex items-center space-x-3.5">
-                    <button className="hover:text-primary text-black dark:text-white">
+                    <button onClick={() => handleOrderClick(packageItem)} className="btn hover:text-primary text-black dark:text-white">
                       <svg
                         className="fill-current"
                         width="18"
@@ -125,25 +93,6 @@ const Orders = () => {
                         />
                         <path
                           d="M9 11.3906C7.67812 11.3906 6.60938 10.3219 6.60938 9C6.60938 7.67813 7.67812 6.60938 9 6.60938C10.3219 6.60938 11.3906 7.67813 11.3906 9C11.3906 10.3219 10.3219 11.3906 9 11.3906ZM9 7.875C8.38125 7.875 7.875 8.38125 7.875 9C7.875 9.61875 8.38125 10.125 9 10.125C9.61875 10.125 10.125 9.61875 10.125 9C10.125 8.38125 9.61875 7.875 9 7.875Z"
-                          fill=""
-                        />
-                      </svg>
-                    </button>
-                    <button className="hover:text-primary text-black dark:text-white">
-                      <svg
-                        className="fill-current"
-                        width="18"
-                        height="18"
-                        viewBox="0 0 18 18"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M16.8754 11.6719C16.5379 11.6719 16.2285 11.9531 16.2285 12.3187V14.8219C16.2285 15.075 16.0316 15.2719 15.7785 15.2719H2.22227C1.96914 15.2719 1.77227 15.075 1.77227 14.8219V12.3187C1.77227 11.9812 1.49102 11.6719 1.12539 11.6719C0.759766 11.6719 0.478516 11.9531 0.478516 12.3187V14.8219C0.478516 15.7781 1.23789 16.5375 2.19414 16.5375H15.7785C16.7348 16.5375 17.4941 15.7781 17.4941 14.8219V12.3187C17.5223 11.9531 17.2129 11.6719 16.8754 11.6719Z"
-                          fill=""
-                        />
-                        <path
-                          d="M8.55074 12.3469C8.66324 12.4594 8.83199 12.5156 9.00074 12.5156C9.16949 12.5156 9.31012 12.4594 9.45074 12.3469L13.4726 8.43752C13.7257 8.1844 13.7257 7.79065 13.5007 7.53752C13.2476 7.2844 12.8539 7.2844 12.6007 7.5094L9.64762 10.4063V2.1094C9.64762 1.7719 9.36637 1.46252 9.00074 1.46252C8.66324 1.46252 8.35387 1.74377 8.35387 2.1094V10.4063L5.40074 7.53752C5.14762 7.2844 4.75387 7.31252 4.50074 7.53752C4.24762 7.79065 4.27574 8.1844 4.50074 8.43752L8.55074 12.3469Z"
                           fill=""
                         />
                       </svg>
@@ -182,9 +131,81 @@ const Orders = () => {
             ))}
           </tbody>
         </table>
+        {selectedOrder && (
+          <dialog id="my_modal_4" className="modal">
+          <div className="max-w-6xl mx-auto p-8 bg-white dark:bg-black text-black dark:text-white shadow-lg ">
+            <div className="flex justify-around items-center mb-6">
+              <h3 className="font-bold text-xl">Order Details</h3>
+              <p className="py-2">
+                  <span className="font-semibold">Order Date:</span>{" "}
+                  {selectedOrder?.invoiceDate || "2 Jan 2024"}
+                </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                
+              <p className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium bg-success text-success`}>
+                    Cash On Delivery
+                  </p>
+                
+                <p className="py-2">
+                  <span className="font-semibold">Product Name:</span>{" "}
+                  {selectedOrder?.productName}
+                </p>
+                <p className="py-2">
+                  <span className="font-semibold">Product Price:</span>{" "}
+                  {selectedOrder?.productPrice} Taka
+                </p>
+                <p className="py-2">
+                  <span className="font-semibold">Delivery Charge:</span> 100 Taka
+                </p>
+                <p className="py-2">
+                  <span className="font-semibold">Discounted Price:</span>{" "}
+                  {selectedOrder?.discountedPrice || '0'} Taka
+                </p>
+                
+              </div>
+              <div>
+              <p className="py-2">
+              <p className="py-2">
+                  <span className="font-semibold">Name:</span>{" "}
+                  {selectedOrder?.fullName}
+                </p>
+                  <span className="font-semibold">Number:</span>{" "}
+                  {selectedOrder?.phoneNumber}
+                </p>
+                
+                <p className="py-2">
+                  <span className="font-semibold">Address:</span>{" "}
+                  {selectedOrder?.address}
+                </p>
+                <p className="py-2">
+                  <span className="font-semibold">Total Price:</span>{" "}
+                  {selectedOrder?.totalPrice} Taka
+                </p>
+                
+                
+              </div>
+            </div>
+            <div className="mt-8 flex justify-end">
+              <button
+                onClick={() => {
+                  setSelectedOrder(null);
+                  document.getElementById("my_modal_4").close();
+                }}
+                className=" px-2 py-1 rounded-sm bg-pink-400 text-white "
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </dialog>
+        
+        )}
       </div>
     </div>
   );
 };
 
 export default Orders;
+
