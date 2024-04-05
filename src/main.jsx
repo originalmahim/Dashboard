@@ -21,6 +21,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import Cupons from './Components/Dashboard/Tables/Cupons';
+import Newlayout from './Components/Dashboard/New/Newlayout';
 
 const queryClient = new QueryClient();
 
@@ -36,19 +37,15 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <PrivateRaute><MahinDashBoard></MahinDashBoard></PrivateRaute>,
+        element: <PrivateRaute><Newlayout></Newlayout></PrivateRaute>,
       },
       {
         path: 'overview',
-        element: <PrivateRaute><MahinDashBoard></MahinDashBoard></PrivateRaute>
+        element: <PrivateRaute><Newlayout></Newlayout></PrivateRaute>
       },
       {
         path: 'Users',
         element: <PrivateRaute><Users /></PrivateRaute>
-      },
-      {
-        path: 'orders',
-        element: <PrivateRaute><Tables></Tables></PrivateRaute>,
       },
       {
         path: 'Products',

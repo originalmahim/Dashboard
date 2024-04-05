@@ -187,7 +187,8 @@ const Orders = () => {
                 
               </div>
             </div>
-            <div className="mt-8 flex justify-end">
+            <div className="mt-8 flex items-center gap-4 justify-end">
+              <button className="px-2 py-1 rounded-sm bg-blue-400 text-white" >Print</button>
               <button
                 onClick={() => {
                   setSelectedOrder(null);
