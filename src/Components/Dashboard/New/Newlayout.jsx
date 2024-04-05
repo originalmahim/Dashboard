@@ -610,9 +610,6 @@ const Newlayout = () => {
                       <td className="whitespace-nowrap px-3 py-2 text-sm text-slate-400">
                         {person.phone}
                       </td>
-                      {/* <td className="whitespace-nowrap px-3 py-2 text-sm text-slate-400">
-                        {person.totalPrice + person.deliveryCharge} tk
-                      </td> */}
                       <td className="whitespace-nowrap px-3 py-2 text-sm text-slate-400">
                         {person.date};
                         <span>{person?.time && " " + person?.time}</span>
@@ -626,7 +623,7 @@ const Newlayout = () => {
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              class="icon icon-tabler icon-tabler-eye"
+                              className="icon icon-tabler icon-tabler-eye"
                               width="20"
                               height="20"
                               viewBox="0 0 24 24"
@@ -847,15 +844,15 @@ const Newlayout = () => {
               <div className="absolute rounded-md bg-purple-100 p-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-shopping-bag stroke-purple-500"
+                  className="icon icon-tabler icon-tabler-shopping-bag stroke-purple-500"
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
-                  stroke-width="2"
+                  strokeWidth="2"
                   stroke="currentColor"
                   fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z" />
@@ -875,15 +872,12 @@ const Newlayout = () => {
               <div className="absolute rounded-md bg-teal-100 p-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-star stroke-teal-500"
+                  className="icon icon-tabler icon-tabler-star stroke-teal-500"
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
@@ -987,26 +981,6 @@ const Newlayout = () => {
           </dl>
         </div>
         <ToastContainer />
-      <button
-        onClick={scrollToTop}
-        className={`float-right fixed cursor-pointer z-30 right-7 bottom-14 h-10 w-10 flex items-center justify-center rounded-lg bg-slate-700 hover:bg-green-500 active:bg-green-700 active:scale-95 ease-in duration-75 opacity-50 hover:opacity-100 shadow-xl ${buttonClasses}`}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="icon icon-tabler icon-tabler-chevron-up text-white mx-auto"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          strokeWidth="2"
-          stroke="currentColor"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-          <path d="M6 15l6 -6l6 6"></path>
-        </svg>
-      </button>
     </div>
   );
 };
