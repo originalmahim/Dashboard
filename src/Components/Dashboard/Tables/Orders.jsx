@@ -5,7 +5,7 @@ import axios from "axios";
 const Orders = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
 
-  const { data: packageData, isLoading, error, refetch } = useQuery({
+  const { data: packageData, isLoading, error } = useQuery({
     queryKey: ["packageData"],
     queryFn: async () => {
       try {

@@ -1,21 +1,14 @@
-
-import  {  useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
 import logo from './../DashImage/logo/andalib.png'
-// import { Helmet } from "react-helmet-async";
-// import { ToastContainer, toast } from "react-toastify";
+import  { useReactToPrint } from "react-to-print";
+import { useRef } from "react";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+// import { Helmet } from "react-helmet-async";
 
 const Invoice = () => {
+          const componentRef = useRef();
           const singleItem = useLoaderData()
-  
-  const [dataUpdated, setDataUpdated] = useState();
-
-
   const handleStatusShipped = async (_id) => {
     try {
       const response = await fetch(
@@ -30,7 +23,6 @@ const Invoice = () => {
       );
 
       if (response.ok) {
-        setDataUpdated(true);
         toast.success("অর্ডারটি শিপ করা হয়েছে!", {
           position: "top-right",
           autoClose: 4000,
@@ -57,7 +49,6 @@ const Invoice = () => {
       );
 
       if (response.ok) {
-        setDataUpdated(true);
         toast.warn("অর্ডারটি পেন্ডিং মার্কড হয়েছে!", {
           position: "top-right",
           autoClose: 4000,
@@ -71,9 +62,10 @@ const Invoice = () => {
     }
   };
 
-  const handlePrint = () => {
-    window.print();
-  };
+  const handlePrint = useReactToPrint({
+          content: () => componentRef.current,
+        });
+      
 
   const subTotalPrice = singleItem?.food?.reduce((sum, item) => {
     const productPrice = ((item.price /
@@ -96,8 +88,8 @@ const Invoice = () => {
             </title>
           </Helmet> */}
 
-          <div className="bg-white mx-auto max-w-3xl my-4">
-            <div>
+          <div className="bg-white mx-auto max-w-7xl my-4" >
+          <div ref={componentRef}>
               <div className="py-8 ring-0 ring-slate-100 sm:ring-1 sm:ring-inset sm:mx-0 sm:rounded-lg sm:p-8 lg:col-span-2 lg:row-span-2 lg:row-end-2 xl:p-16">
                 <nav
                   className={`mx-auto flex items-center justify-between gap-x-6 `}
@@ -118,107 +110,7 @@ const Invoice = () => {
                       </div>
                     </a>
                   </div>
-                  <div className="flex flex-1 lg:flex items-center justify-end gap-2 printButton">
-                    <button
-                      onClick={() => handleStatusShipped(singleItem?._id)}
-                      className={`float-right py-2 px-2 rounded-lg bg-green-500 hover:bg-green-600 active:bg-green-700 ease-in duration-75 text-sm font-semibold text-white hover:text-white flex items-center printButton gap-2 ${
-                        singleItem?.status === "Pending" ? " " : "hidden"
-                      }`}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="icon icon-tabler icon-tabler-circle-check"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        strokeWidth="2"
-                        stroke="currentColor"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                        <path d="M9 12l2 2l4 -4" />
-                      </svg>
-                    </button>
-                    <button
-                      onClick={() => handleStatusPending(singleItem._id)}
-                      className={`float-right py-2 px-2 rounded-lg bg-amber-500 hover:bg-amber-600 active:bg-amber-700 ease-in duration-75 text-sm font-semibold text-white hover:text-white flex items-center printButton gap-2 ${
-                        singleItem?.status === "Shipped" ||
-                        singleItem?.status === "Cancelled"
-                          ? " "
-                          : "hidden"
-                      }`}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="icon icon-tabler icon-tabler-alert-triangle printButton"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        stroke-width="2"
-                        stroke="currentColor"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M12 9v4" />
-                        <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
-                        <path d="M12 16h.01" />
-                      </svg>
-                    </button>
-                    <Link
-                      to={`/editOrder/${singleItem?._id}`}
-                      className={`float-right py-2 px-2 rounded-lg bg-blue-500 hover:bg-blue-600 active:bg-blue-700 ease-in duration-75 text-sm font-semibold text-white hover:text-white flex items-center printButton gap-2 ${
-                        singleItem?.status === "Pending" ||
-                        singleItem?.status === "Cancelled"
-                          ? " "
-                          : "hidden"
-                      }`}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-edit"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        stroke-width="2"
-                        stroke="currentColor"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                        <path d="M16 5l3 3" />
-                      </svg>
-                    </Link>
-                    <button
-                      onClick={handlePrint}
-                      className={`float-right py-2 px-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 ease-in duration-75 text-sm font-semibold text-white hover:text-white flex items-center printButton gap-2`}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-printer printButton"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        stroke-width="2"
-                        stroke="currentColor"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2" />
-                        <path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4" />
-                        <path d="M7 13m0 2a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2z" />
-                      </svg>
-                    </button>
-                  </div>
+                  
                 </nav>
                 <div className="flex justify-between">
                   <div className="mt-8 flex-1">
@@ -247,15 +139,15 @@ const Invoice = () => {
                   <div className="mt-6 border-t border-slate-200 pt-6 sm:pr-4">
                     <dt className="font-semibold text-slate-400">From</dt>
                     <dd className="mt-2">
-                      <span className="font-medium text-slate-600">
+                      <span className="font-medium text-black">
                         Andalib
                       </span>
                       <br />
-                      <span className="font-light text-slate-600">
+                      <span className="font-medium text-slate-600">
                         Signboard, Jatrabari, Dhaka-1200
                       </span>
                       <br />
-                      <span className="font-light text-slate-600">
+                      <span className="font-medium text-slate-600">
                         01585753020
                       </span>
                     </dd>
@@ -263,15 +155,15 @@ const Invoice = () => {
                   <div className="mt-8 sm:mt-6 sm:border-t sm:border-slate-200 sm:pl-4 sm:pt-6">
                     <dt className="font-semibold text-slate-400">To</dt>
                     <dd className="mt-2">
-                      <span className="font-medium text-slate-600">
+                      <span className="font-medium text-slate-800">
                         {singleItem?.name}
                       </span>
                       <br />
-                      <span className="font-light text-slate-600">
+                      <span className="font-medium text-slate-800">
                         {singleItem?.address}
                       </span>
                       <br />
-                      <span className="font-light text-slate-600">
+                      <span className=" text-black font-medium">
                         {singleItem?.phone}
                       </span>
                     </dd>
@@ -448,7 +340,7 @@ const Invoice = () => {
                         COD Charge 1%
                       </th>
                       <td className="pl-8 pr-0 py-4 text-right tabular-nums text-slate-600">
-                        {(grandTotal * 0.01).toFixed(2)} tk
+                        {(grandTotal * 0.01).toFixed(0)} tk
                       </td>
                     </tr>
                     <tr className="border-t border-slate-100">
@@ -472,14 +364,118 @@ const Invoice = () => {
                     </tr>
                   </tfoot>
                 </table>
-                <div className="font-semibold text-slate-400 text-xs italic mt-4 md:mt-2 text-center">
+                <div className="font-bold text-slate-400 text-xs italic mt-4 md:mt-2 text-center">
                   Thank you for shopping with us. Please contact our helpline or
                   chat with us for any issues. Have a nice day.
                 </div>
               </div>
             </div>
+            <div className="flex flex-1 lg:flex items-center justify-center gap-2 ">
+                    <button
+                      onClick={() => handleStatusShipped(singleItem?._id)}
+                      className={`float-right py-2 px-2 rounded-lg bg-green-500 hover:bg-green-600 active:bg-green-700 ease-in duration-75 text-sm font-semibold text-white hover:text-white flex items-center printButton gap-2 ${
+                        singleItem?.status === "Pending" ? " " : "hidden"
+                      }`}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="icon icon-tabler icon-tabler-circle-check"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                        <path d="M9 12l2 2l4 -4" />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={() => handleStatusPending(singleItem._id)}
+                      className={`float-right py-2 px-2 rounded-lg bg-amber-500 hover:bg-amber-600 active:bg-amber-700 ease-in duration-75 text-sm font-semibold text-white hover:text-white flex items-center printButton gap-2 ${
+                        singleItem?.status === "Shipped" ||
+                        singleItem?.status === "Cancelled"
+                          ? " "
+                          : "hidden"
+                      }`}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="icon icon-tabler icon-tabler-alert-triangle printButton"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12 9v4" />
+                        <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
+                        <path d="M12 16h.01" />
+                      </svg>
+                    </button>
+                    <Link
+                      to={`/editOrder/${singleItem?._id}`}
+                      className={`float-right py-2 px-2 rounded-lg bg-blue-500 hover:bg-blue-600 active:bg-blue-700 ease-in duration-75 text-sm font-semibold text-white hover:text-white flex items-center printButton gap-2 ${
+                        singleItem?.status === "Pending" ||
+                        singleItem?.status === "Cancelled"
+                          ? " "
+                          : "hidden"
+                      }`}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="icon icon-tabler icon-tabler-edit"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                        <path d="M16 5l3 3" />
+                      </svg>
+                    </Link>
+                    <button
+                      onClick={handlePrint}
+                      className={`float-right py-2 px-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 ease-in duration-75 text-sm font-semibold text-white hover:text-white flex items-center printButton gap-2`}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="icon icon-tabler icon-tabler-printer printButton"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2" />
+                        <path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4" />
+                        <path d="M7 13m0 2a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2z" />
+                      </svg>
+                    </button>
+                    
           </div>
+          </div>
+          
         </>
+        
     </div>
   );
 };

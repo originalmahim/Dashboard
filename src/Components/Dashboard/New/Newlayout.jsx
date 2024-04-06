@@ -70,7 +70,6 @@ const Newlayout = () => {
   }, [selected, dataUpdated, formattedDate]);
 
   const orderDelete = async (_id) => {
-    console.log(_id);
     try {
       const response = await fetch(
         `http://localhost:5000/deleteorder/${_id}`,
@@ -122,6 +121,7 @@ const Newlayout = () => {
       setFilterData(allData.filter((d) => d.status === item));
     }
   };
+  
 
 
   return (
@@ -542,6 +542,7 @@ const Newlayout = () => {
                               <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
                             </svg>
                           </Link>
+
                           <Link
                             to={`/editOrder/${person._id}`}
                             target="_blank"
