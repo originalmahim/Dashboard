@@ -5,8 +5,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './index.css'
-import MahinDashBoard from './Components/Dashboard/MainDashBoard/MahinDashBoard';
-import Tables from './Components/Dashboard/MainDashBoard/Tables';
 import Product from './Components/Dashboard/Tables/Product';
 import Users from './Components/Dashboard/Tables/Users';
 import Profile from './Components/Dashboard/Header/Profile';
@@ -22,6 +20,7 @@ import {
 } from '@tanstack/react-query'
 import Cupons from './Components/Dashboard/Tables/Cupons';
 import Newlayout from './Components/Dashboard/New/Newlayout';
+import Invoice from './Components/Dashboard/New/Invoice';
 
 const queryClient = new QueryClient();
 
@@ -42,6 +41,11 @@ const router = createBrowserRouter([
       {
         path: 'overview',
         element: <PrivateRaute><Newlayout></Newlayout></PrivateRaute>
+      },
+      {
+        path: 'invoice/:id',
+        element: <PrivateRaute><Invoice></Invoice></PrivateRaute>,
+        loader: ({params}) => fetch(`https://chui-jhal-server.vercel.app/singleitem/${params.id}`)
       },
       {
         path: 'Users',

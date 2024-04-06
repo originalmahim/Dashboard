@@ -93,10 +93,9 @@ const Newlayout = () => {
     }
   };
   const handleStatusCancelled = async (_id) => {
-
     try {
       const response = await fetch(
-        `https://chui-jhal-server.vercel.app/cancelled/${_id}`,
+        `http://localhost:5000/cancelled/${_id}`,
         {
           method: "PATCH",
           headers: {
@@ -104,7 +103,6 @@ const Newlayout = () => {
           },
         }
       );
-
       if (response.ok) {
         setDataUpdated(true);
         toast.error("অর্ডারটি ক্যান্সেল করা হয়েছে!");
@@ -480,7 +478,7 @@ const Newlayout = () => {
                       </td>
                       <td className="whitespace-nowrap px-3 py-2 text-sm font-medium text-slate-400">
                         <Link
-                          to={`/invoice/${person._id}`}
+                          to={`/dashboard/invoice/${person._id}`}
                           target="_blank"
                           className="hover:text-green-500 active:text-green-600 ease-in duration-75"
                         >
@@ -502,7 +500,7 @@ const Newlayout = () => {
                       </td>
                       <td className="whitespace-nowrap px-3 py-2 text-sm text-slate-400">
                         <Link
-                          to={`/invoice/${person._id}`}
+                          to={`/dashboard/invoice/${person._id}`}
                           target="_blank"
                           className="hover:text-green-500 active:text-green-600 ease-in duration-75"
                         >
@@ -519,7 +517,7 @@ const Newlayout = () => {
                       <td className="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-3 h-10">
                         <div className="flex gap-2">
                           <Link
-                            to={`/invoice/${person._id}`}
+                            to={`/dashboard/invoice/${person._id}`}
                             target="_blank"
                             className="py-1.5 px-1.5 rounded-md bg-indigo-400 hover:bg-indigo-500 active:bg-indigo-600 ease-in duration-75 font-semibold text-white hover:text-white"
                           >
@@ -529,11 +527,11 @@ const Newlayout = () => {
                               width="20"
                               height="20"
                               viewBox="0 0 24 24"
-                              stroke-width="2"
+                              strokeWidth="2"
                               stroke="currentColor"
                               fill="none"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                             >
                               <path
                                 stroke="none"
@@ -551,15 +549,15 @@ const Newlayout = () => {
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              class="icon icon-tabler icon-tabler-edit"
+                              className="icon icon-tabler icon-tabler-edit"
                               width="20"
                               height="20"
                               viewBox="0 0 24 24"
-                              stroke-width="2"
+                              strokeWidth="2"
                               stroke="currentColor"
                               fill="none"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                             >
                               <path
                                 stroke="none"
@@ -577,15 +575,15 @@ const Newlayout = () => {
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              class="icon icon-tabler icon-tabler-playstation-x"
+                              className="icon icon-tabler icon-tabler-playstation-x"
                               width="20"
                               height="20"
                               viewBox="0 0 24 24"
-                              stroke-width="2"
+                              strokeWidth="2"
                               stroke="currentColor"
                               fill="none"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                             >
                               <path
                                 stroke="none"
