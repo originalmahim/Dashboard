@@ -1,5 +1,4 @@
 import  { Fragment, useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
 import moment from "moment";
 import {
   Menu,
@@ -9,6 +8,7 @@ import { Link } from "react-router-dom";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { addMonths } from "date-fns";
+import toast, { Toaster } from "react-hot-toast";
 
 const filtersOptions = [
   { name: "All Orders", href: "#" },
@@ -21,7 +21,7 @@ function classNames(...classes) {
 }
 
 const Newlayout = () => {
-  const [date, setDate] = useState(moment().format().split("T")[0]);
+  const [date] = useState(moment().format().split("T")[0]);
   const [allData, setAllData] = useState([]);
   const [dataUpdated, setDataUpdated] = useState(false);
   const [filterData, setFilterData] = useState([]);
@@ -34,43 +34,13 @@ const Newlayout = () => {
   const formattedDate = moment(selected).format("YYYY-MM-DD");
 
   const [selectCalender, setSelectCelender] = useState(false);
-  // console.log(allOrders);
 
-  console.log(allData);
 
-  // scroll code
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
-  const [ShowButton, setShowButton] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setShowButton(true);
-      } else {
-        setShowButton(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const buttonClasses = ShowButton
-    ? "shadow-md ease-in duration-75"
-    : "border-transparent border-red-200 hidden";
   useEffect(() => {
     const fetchData1 = async () => {
       try {
         const response1 = await fetch(
-          `https://chui-jhal-server.vercel.app/orders/${formattedDate}`
+          `http://localhost:5000/orders/${formattedDate}`
         );
         const result1 = await response1.json();
 
@@ -86,79 +56,24 @@ const Newlayout = () => {
     const fetchData2 = async () => {
       try {
         const response2 = await fetch(
-          `https://chui-jhal-server.vercel.app/allordersstate`
+          `http://localhost:5000/allordersstate`
         );
-        const result2 = await response2.json();
-        setAllOrders(result2);
+        const [data] = await response2.json(); // Destructuring the first element of the array
+        setAllOrders(data);
       } catch (error) {
         console.error("Error fetching data2:", error);
       }
     };
-
     // Call both fetchData functions
     fetchData1();
     fetchData2();
   }, [selected, dataUpdated, formattedDate]);
 
-  // console.log(filterData);
-  // console.log(allData);
-//   const handleStatusShipped = async (_id) => {
-//     try {
-//       const response = await fetch(
-//         `https://chui-jhal-server.vercel.app/delivered/${_id}`,
-//         {
-//           method: "PATCH",
-//           headers: {
-//             "Content-Type": "application/json",
-//           },
-//         }
-//       );
-
-//       if (response.ok) {
-//         setDataUpdated(true);
-//         toast.success("অর্ডারটি শিপ করা হয়েছে!", {
-//           position: "top-right",
-//           autoClose: 4000,
-//           theme: "dark",
-//         });
-//       } else {
-//         console.error("Failed to updade status:", await response.text());
-//       }
-//     } catch (error) {
-//       console.error("Error updating status:", error);
-//     }
-//   };
-//   const handleStatusPending = async (_id) => {
-//     try {
-//       const response = await fetch(
-//         `https://chui-jhal-server.vercel.app/pending/${_id}`,
-//         {
-//           method: "PATCH",
-//           headers: {
-//             "Content-Type": "application/json",
-//           },
-//         }
-//       );
-
-//       if (response.ok) {
-//         setDataUpdated(true);
-//         toast.warn("অর্ডারটি পেন্ডিং মার্কড হয়েছে!", {
-//           position: "top-right",
-//           autoClose: 4000,
-//           theme: "dark",
-//         });
-//       } else {
-//         console.error("Failed to updade status:", await response.text());
-//       }
-//     } catch (error) {
-//       console.error("Error updating status:", error);
-//     }
-//   };
-
   const orderDelete = async (_id) => {
+    console.log(_id);
     try {
       const response = await fetch(
-        `https://chui-jhal-server.vercel.app/deleteorder/${_id}`,
+        `http://localhost:5000/deleteorder/${_id}`,
         {
           method: "DELETE",
           headers: {
@@ -166,14 +81,10 @@ const Newlayout = () => {
           },
         }
       );
-
+      console.log(response);
       if (response.ok) {
         setDataUpdated(true);
-        toast.error("অর্ডারটি ডিলিট করা হয়েছে!", {
-          position: "top-right",
-          autoClose: 4000,
-          theme: "dark",
-        });
+        toast.error("অর্ডারটি ডিলিট করা হয়েছে!");
       } else {
         console.error("Failed to Delete Order:", await response.text());
       }
@@ -182,6 +93,7 @@ const Newlayout = () => {
     }
   };
   const handleStatusCancelled = async (_id) => {
+
     try {
       const response = await fetch(
         `https://chui-jhal-server.vercel.app/cancelled/${_id}`,
@@ -195,24 +107,13 @@ const Newlayout = () => {
 
       if (response.ok) {
         setDataUpdated(true);
-        toast.error("অর্ডারটি ক্যান্সেল করা হয়েছে!", {
-          position: "top-right",
-          autoClose: 4000,
-          theme: "dark",
-        });
+        toast.error("অর্ডারটি ক্যান্সেল করা হয়েছে!");
       } else {
         console.error("Failed to updade status:", await response.text());
       }
     } catch (error) {
       console.error("Error updating status:", error);
     }
-  };
-
-  const handleDate = (e) => {
-    setFilterOption("All Orders");
-    setDate(e.target.value);
-    const todaysData = allData.filter((d) => d.date === e.target.value);
-    setFilterData(todaysData);
   };
 
   const handleFilter = (item) => {
@@ -227,7 +128,8 @@ const Newlayout = () => {
 
   return (
     <div className=" bg-white dark:bg-black">
-      
+      <div><Toaster  position="top-center"
+  reverseOrder={false}/></div>
         <div className="pt-20">
           <h3 className="text-xl font-bold text-slate-600">Daily Summary</h3>
           <dl className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-5">
@@ -374,7 +276,7 @@ const Newlayout = () => {
                   {`${filterData
                     .filter((d) => d.status !== "Cancelled")
                     .reduce((acc, item) => acc + item.totalPrice, 0)
-                    .toFixed(2)} tk`}
+                    .toFixed(0)} tk`}
                 </p>
               </dd>
             </div>
@@ -703,15 +605,14 @@ const Newlayout = () => {
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              class="icon icon-tabler icon-tabler-trash"
+                              className="icon icon-tabler icon-tabler-trash"
                               width="20"
                               height="20"
                               viewBox="0 0 24 24"
-                              stroke-width="2"
+                              strokeWidth="2"
                               stroke="currentColor"
                               fill="none"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeLinejoin="round"
                             >
                               <path
                                 stroke="none"
@@ -726,21 +627,21 @@ const Newlayout = () => {
                             </svg>
                           </button>
 
-                          <dialog id={person._id} className="modal">
-                            <div className="modal-box bg-white text-left max-w-md overflow-hidden">
+                          <dialog id={person._id} className="modal bg-white text-black">
+                            <div className="modal-box text-left max-w-md overflow-hidden m-6">
                               <form method="dialog">
                                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="icon icon-tabler icon-tabler-x"
+                                    className="icon icon-tabler icon-tabler-x"
                                     width="20"
                                     height="20"
                                     viewBox="0 0 24 24"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke="currentColor"
                                     fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
                                   >
                                     <path
                                       stroke="none"
@@ -761,11 +662,11 @@ const Newlayout = () => {
                                     width="20"
                                     height="20"
                                     viewBox="0 0 24 24"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     stroke="currentColor"
                                     fill="none"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
                                   >
                                     <path
                                       stroke="none"
@@ -780,10 +681,8 @@ const Newlayout = () => {
                                 Delete Order?{" "}
                               </div>
                               <p className="py-4 hidden md:block text-slate-400 font-normal max-w-sm  text-sm">
-                                Are you sure you want to delete this order? All
-                                of your data of this <br /> order will be
-                                permanently removed. This action cannot be
-                                undone.
+                                Are you sure you want to delete this order ? All
+                                 data for this <br /> order will be permanently removed.
                               </p>
                               <p className="py-4 block md:hidden text-slate-400 font-normal max-w-sm  text-sm">
                                 Are you sure you want to delete this order? All
@@ -797,15 +696,15 @@ const Newlayout = () => {
                               >
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
-                                  class="icon icon-tabler icon-tabler-circle-check"
+                                  className="icon icon-tabler icon-tabler-circle-check"
                                   width="20"
                                   height="20"
                                   viewBox="0 0 24 24"
-                                  stroke-width="2"
+                                  strokeWidth="2"
                                   stroke="currentColor"
                                   fill="none"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                 >
                                   <path
                                     stroke="none"
@@ -974,13 +873,12 @@ const Newlayout = () => {
               </dt>
               <dd className="ml-14 flex items-baseline -mt-1">
                 <p className="text-2xl truncate font-semibold text-slate-600">
-                  {allOrders?.totalOrderPrice?.toFixed(2)} tk
+                  {allOrders?.totalOrderPrice?.toFixed(0)} tk
                 </p>
               </dd>
             </div>
           </dl>
         </div>
-        <ToastContainer />
     </div>
   );
 };
