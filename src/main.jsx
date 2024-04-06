@@ -45,7 +45,7 @@ const router = createBrowserRouter([
       {
         path: 'invoice/:id',
         element: <PrivateRaute><Invoice></Invoice></PrivateRaute>,
-        loader: ({params}) => fetch(`https://chui-jhal-server.vercel.app/singleitem/${params.id}`)
+        loader: ({params}) => fetch(`http://localhost:5000/singleitem/${params.id}`)
       },
       {
         path: 'Users',

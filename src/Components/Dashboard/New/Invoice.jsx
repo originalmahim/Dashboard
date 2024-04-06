@@ -13,7 +13,7 @@ const Invoice = () => {
     try {
       const response = await fetch(
         // `http://localhost:5000/update/${_id}`,
-        `https://chui-jhal-server.vercel.app/delivered/${_id}`,
+        `http://localhost:5000/delivered/${_id}`,
         {
           method: "PATCH",
           headers: {
@@ -23,11 +23,7 @@ const Invoice = () => {
       );
 
       if (response.ok) {
-        toast.success("অর্ডারটি শিপ করা হয়েছে!", {
-          position: "top-right",
-          autoClose: 4000,
-          theme: "dark",
-        });
+        toast.success("অর্ডারটি শিপ করা হয়েছে!");
       } else {
         console.error("Failed to updade status:", await response.text());
       }
@@ -39,7 +35,7 @@ const Invoice = () => {
     try {
       const response = await fetch(
         // `http://localhost:5000/update/${_id}`,
-        `https://chui-jhal-server.vercel.app/pending/${_id}`,
+        `http://localhost:5000/pending/${_id}`,
         {
           method: "PATCH",
           headers: {
@@ -49,11 +45,7 @@ const Invoice = () => {
       );
 
       if (response.ok) {
-        toast.warn("অর্ডারটি পেন্ডিং মার্কড হয়েছে!", {
-          position: "top-right",
-          autoClose: 4000,
-          theme: "dark",
-        });
+          toast.success("অর্ডারটি পেন্ডিং মার্কড হয়েছে!");
       } else {
         console.error("Failed to updade status:", await response.text());
       }
@@ -374,7 +366,7 @@ const Invoice = () => {
                     <button
                       onClick={() => handleStatusShipped(singleItem?._id)}
                       className={`float-right py-2 px-2 rounded-lg bg-green-500 hover:bg-green-600 active:bg-green-700 ease-in duration-75 text-sm font-semibold text-white hover:text-white flex items-center printButton gap-2 ${
-                        singleItem?.status === "Pending" ? " " : "hidden"
+                        singleItem?.status === "Pending" ? '' : 'hidden'
                       }`}
                     >
                       <svg
@@ -397,11 +389,8 @@ const Invoice = () => {
                     <button
                       onClick={() => handleStatusPending(singleItem._id)}
                       className={`float-right py-2 px-2 rounded-lg bg-amber-500 hover:bg-amber-600 active:bg-amber-700 ease-in duration-75 text-sm font-semibold text-white hover:text-white flex items-center printButton gap-2 ${
-                        singleItem?.status === "Shipped" ||
-                        singleItem?.status === "Cancelled"
-                          ? " "
-                          : "hidden"
-                      }`}
+                              singleItem?.status === "Pending" ? 'hidden' : ''
+                            }`}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { addMonths } from "date-fns";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const filtersOptions = [
   { name: "All Orders", href: "#" },
@@ -25,7 +25,7 @@ const Newlayout = () => {
   const [allData, setAllData] = useState([]);
   const [dataUpdated, setDataUpdated] = useState(false);
   const [filterData, setFilterData] = useState([]);
-  const [allOrders, setAllOrders] = useState();
+  // const [allOrders, setAllOrders] = useState();
   const [filterOption, setFilterOption] = useState("All Orders");
   const today = new Date();
   const nextMonth = addMonths(new Date(), 0);
@@ -34,6 +34,8 @@ const Newlayout = () => {
   const formattedDate = moment(selected).format("YYYY-MM-DD");
 
   const [selectCalender, setSelectCelender] = useState(false);
+
+  const [WebData,setWebData] = useState([]);
 
 
   useEffect(() => {
@@ -56,10 +58,11 @@ const Newlayout = () => {
     const fetchData2 = async () => {
       try {
         const response2 = await fetch(
-          `http://localhost:5000/allordersstate`
+          `http://localhost:5000/orders`
         );
-        const [data] = await response2.json(); // Destructuring the first element of the array
-        setAllOrders(data);
+        const result2 = await response2.json();
+        setWebData(result2)
+        
       } catch (error) {
         console.error("Error fetching data2:", error);
       }
@@ -126,8 +129,7 @@ const Newlayout = () => {
 
   return (
     <div className=" bg-white dark:bg-black">
-      <div><Toaster  position="top-center"
-  reverseOrder={false}/></div>
+      
         <div className="pt-20">
           <h3 className="text-xl font-bold text-slate-600">Daily Summary</h3>
           <dl className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-5">
@@ -735,14 +737,14 @@ const Newlayout = () => {
           </div>
         </div>
 
-        <div className="my-16">
+        <div className="pt-20">
           <h3 className="text-xl font-bold text-slate-600">Website Summary</h3>
           <dl className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-5">
-            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-purple-200 ring-1 bg-purple-50/50">
-              <div className="absolute rounded-md bg-purple-100 p-3">
+            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-pink-200 ring-1 bg-pink-50/50">
+              <div className="absolute rounded-md bg-pink-100 p-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-shopping-bag stroke-purple-500"
+                  className="icon icon-tabler icon-tabler-shopping-cart stroke-pink-500"
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
@@ -753,8 +755,10 @@ const Newlayout = () => {
                   strokeLinejoin="round"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z" />
-                  <path d="M9 11v-5a3 3 0 0 1 6 0v5" />
+                  <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                  <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                  <path d="M17 17h-11v-14h-2" />
+                  <path d="M6 5l14 1l-1 7h-13" />
                 </svg>
               </div>
               <dt className="ml-14 truncate text-sm font-medium text-slate-400">
@@ -762,67 +766,15 @@ const Newlayout = () => {
               </dt>
               <dd className="ml-14 flex items-baseline -mt-1">
                 <p className="text-2xl truncate font-semibold text-slate-600">
-                  {allOrders?.totalProducts}
+                  {WebData.length}
                 </p>
               </dd>
             </div>
-            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-teal-200 ring-1 bg-teal-50/50">
-              <div className="absolute rounded-md bg-teal-100 p-3">
+            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-green-200 ring-1 bg-green-50/50">
+              <div className="absolute rounded-md bg-green-100 p-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-star stroke-teal-500"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
-                </svg>
-              </div>
-              <dt className="ml-14 truncate text-sm font-medium text-slate-400">
-                Completed
-              </dt>
-              <dd className="ml-14 flex items-baseline -mt-1">
-                <p className="text-2xl truncate font-semibold text-slate-600">
-                  {allOrders?.totalShipped}
-                </p>
-              </dd>
-            </div>
-            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-orange-200 ring-1 bg-orange-50/50">
-              <div className="absolute rounded-md bg-orange-100 p-3">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-reload stroke-orange-500"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                  stroke="currentColor"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M19.933 13.041a8 8 0 1 1 -9.925 -8.788c3.899 -1 7.935 1.007 9.425 4.747" />
-                  <path d="M20 4v5h-5" />
-                </svg>
-              </div>
-              <dt className="ml-14 truncate text-sm font-medium text-slate-400">
-                Pending
-              </dt>
-              <dd className="ml-14 flex items-baseline -mt-1">
-                <p className="text-2xl truncate font-semibold text-slate-600">
-                  {allOrders?.totalPending}
-                </p>
-              </dd>
-            </div>
-            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-slate-200 ring-1 bg-slate-50/50">
-              <div className="absolute rounded-md bg-slate-100 p-3">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-circle-minus stroke-slate-500"
+                  className="icon icon-tabler icon-tabler-circle-check stroke-green-500"
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
@@ -834,23 +786,23 @@ const Newlayout = () => {
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                  <path d="M9 12l6 0" />
+                  <path d="M9 12l2 2l4 -4" />
                 </svg>
               </div>
               <dt className="ml-14 truncate text-sm font-medium text-slate-400">
-                Cancelled
+                Completed
               </dt>
               <dd className="ml-14 flex items-baseline -mt-1">
                 <p className="text-2xl truncate font-semibold text-slate-600">
-                  {allOrders?.totalCanceled}
+                  {WebData.filter((d) => d.status === "Shipped").length}
                 </p>
               </dd>
             </div>
-            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-sky-200 ring-1 bg-sky-50/50">
-              <div className="absolute rounded-md bg-sky-100 p-3">
+            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-amber-200 ring-1 bg-amber-50/50">
+              <div className="absolute rounded-md bg-amber-100 p-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-briefcase stroke-sky-500"
+                  className="icon icon-tabler icon-tabler-alert-triangle stroke-amber-500"
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
@@ -861,10 +813,66 @@ const Newlayout = () => {
                   strokeLinejoin="round"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
-                  <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2" />
-                  <path d="M12 12l0 .01" />
-                  <path d="M3 13a20 20 0 0 0 18 0" />
+                  <path d="M12 9v4" />
+                  <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
+                  <path d="M12 16h.01" />
+                </svg>
+              </div>
+              <dt className="ml-14 truncate text-sm font-medium text-slate-400">
+                Pending
+              </dt>
+              <dd className="ml-14 flex items-baseline -mt-1">
+                <p className="text-2xl truncate font-semibold text-slate-600">
+                  {WebData.filter((d) => d.status === "Pending").length}
+                </p>
+              </dd>
+            </div>
+            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-slate-200 ring-1 bg-slate-50/50">
+              <div className="absolute rounded-md bg-slate-100 p-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler icon-tabler-playstation-x stroke-slate-500"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2"
+                  stroke="currentColor"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M12 21a9 9 0 0 0 9 -9a9 9 0 0 0 -9 -9a9 9 0 0 0 -9 9a9 9 0 0 0 9 9z" />
+                  <path d="M8.5 8.5l7 7" />
+                  <path d="M8.5 15.5l7 -7" />
+                </svg>
+              </div>
+              <dt className="ml-14 truncate text-sm font-medium text-slate-400">
+                Cancelled
+              </dt>
+              <dd className="ml-14 flex items-baseline -mt-1">
+                <p className="text-2xl truncate font-semibold text-slate-600">
+                  {WebData.filter((d) => d.status === "Cancelled").length}
+                </p>
+              </dd>
+            </div>
+            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-indigo-200 ring-1 bg-indigo-50/50">
+              <div className="absolute rounded-md bg-indigo-100 p-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler icon-tabler-currency-dollar stroke-indigo-500"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2"
+                  stroke="currentColor"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2" />
+                  <path d="M12 3v3m0 12v3" />
                 </svg>
               </div>
               <dt className="ml-14 truncate text-sm font-medium text-slate-400">
@@ -872,7 +880,10 @@ const Newlayout = () => {
               </dt>
               <dd className="ml-14 flex items-baseline -mt-1">
                 <p className="text-2xl truncate font-semibold text-slate-600">
-                  {allOrders?.totalOrderPrice?.toFixed(0)} tk
+                  {`${WebData
+                    .filter((d) => d.status !== "Cancelled")
+                    .reduce((acc, item) => acc + item.totalPrice, 0)
+                    .toFixed(0)} tk`}
                 </p>
               </dd>
             </div>

@@ -2,6 +2,7 @@ import  { useState } from 'react';
 import Sidebar from '../Sidebar';
 import Header from '../Header/Header';
 import { Outlet } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
 
 
@@ -10,6 +11,8 @@ const DefaultLayout = () => {
 
   return (
     <div className="dark:bg-black bg-white dark:text-bodydark">
+      <div><Toaster  position="top-center"
+  reverseOrder={false}/></div>
       {/* <!-- ===== Page Wrapper Start ===== --> */}
       <div className="flex h-screen overflow-hidden">
         {/* <!-- ===== Sidebar Start ===== --> */}
