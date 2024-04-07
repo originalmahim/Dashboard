@@ -3,8 +3,8 @@ import { Link, useLoaderData } from "react-router-dom";
 import logo from './../DashImage/logo/andalib.png'
 import  { useReactToPrint } from "react-to-print";
 import { useRef } from "react";
+import { Helmet } from "react-helmet";
 
-// import { Helmet } from "react-helmet-async";
 
 const Invoice = () => {
           const componentRef = useRef();
@@ -12,8 +12,8 @@ const Invoice = () => {
   const handleStatusShipped = async (_id) => {
     try {
       const response = await fetch(
-        // `http://localhost:5000/update/${_id}`,
-        `http://localhost:5000/delivered/${_id}`,
+        // `https://andalib-server-mauve.vercel.app/update/${_id}`,
+        `https://andalib-server-mauve.vercel.app/delivered/${_id}`,
         {
           method: "PATCH",
           headers: {
@@ -34,8 +34,8 @@ const Invoice = () => {
   const handleStatusPending = async (_id) => {
     try {
       const response = await fetch(
-        // `http://localhost:5000/update/${_id}`,
-        `http://localhost:5000/pending/${_id}`,
+        // `https://andalib-server-mauve.vercel.app/update/${_id}`,
+        `https://andalib-server-mauve.vercel.app/pending/${_id}`,
         {
           method: "PATCH",
           headers: {
@@ -74,11 +74,11 @@ const Invoice = () => {
   return (
     <div className="w-full bg-white">
         <>
-          {/* <Helmet>
+          <Helmet>
             <title>
               Invoice # {`${singleItem?.invoice || singleItem?._id}`}
             </title>
-          </Helmet> */}
+          </Helmet>
 
           <div className="bg-white mx-auto max-w-7xl my-4" >
           <div ref={componentRef}>

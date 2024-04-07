@@ -42,7 +42,7 @@ const Newlayout = () => {
     const fetchData1 = async () => {
       try {
         const response1 = await fetch(
-          `http://localhost:5000/orders/${formattedDate}`
+          `https://andalib-server-mauve.vercel.app/orders/${formattedDate}`
         );
         const result1 = await response1.json();
 
@@ -58,7 +58,7 @@ const Newlayout = () => {
     const fetchData2 = async () => {
       try {
         const response2 = await fetch(
-          `http://localhost:5000/orders`
+          `https://andalib-server-mauve.vercel.app/orders`
         );
         const result2 = await response2.json();
         setWebData(result2)
@@ -75,7 +75,7 @@ const Newlayout = () => {
   const orderDelete = async (_id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/deleteorder/${_id}`,
+        `https://andalib-server-mauve.vercel.app/deleteorder/${_id}`,
         {
           method: "DELETE",
           headers: {
@@ -97,7 +97,7 @@ const Newlayout = () => {
   const handleStatusCancelled = async (_id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/cancelled/${_id}`,
+        `https://andalib-server-mauve.vercel.app/cancelled/${_id}`,
         {
           method: "PATCH",
           headers: {
@@ -131,7 +131,7 @@ const Newlayout = () => {
     <div className=" bg-white dark:bg-black">
       
         <div className="pt-20">
-          <h3 className="text-xl font-bold text-slate-600">Daily Summary</h3>
+          <h3 className="text-xl font-bold text-slate-600 dark:text-white">Daily Summary</h3>
           <dl className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-5">
             <div className="overflow-hidden p-3 rounded-lg ring-inset ring-pink-200 ring-1 bg-pink-50/50">
               <div className="absolute rounded-md bg-pink-100 p-3">
@@ -154,11 +154,11 @@ const Newlayout = () => {
                   <path d="M6 5l14 1l-1 7h-13" />
                 </svg>
               </div>
-              <dt className="ml-14 truncate text-sm font-medium text-slate-400">
+              <dt className="ml-14 truncate text-sm font-medium text-slate-400 dark:text-white">
                 Orders
               </dt>
               <dd className="ml-14 flex items-baseline -mt-1">
-                <p className="text-2xl truncate font-semibold text-slate-600">
+                <p className="text-2xl truncate font-semibold text-slate-600 dark:text-white">
                   {filterData.length}
                 </p>
               </dd>
@@ -182,11 +182,11 @@ const Newlayout = () => {
                   <path d="M9 12l2 2l4 -4" />
                 </svg>
               </div>
-              <dt className="ml-14 truncate text-sm font-medium text-slate-400">
+              <dt className="ml-14 truncate text-sm font-medium text-slate-400 dark:text-white">
                 Completed
               </dt>
               <dd className="ml-14 flex items-baseline -mt-1">
-                <p className="text-2xl truncate font-semibold text-slate-600">
+                <p className="text-2xl truncate font-semibold text-slate-600 dark:text-white">
                   {filterData.filter((d) => d.status === "Shipped").length}
                 </p>
               </dd>
@@ -211,11 +211,11 @@ const Newlayout = () => {
                   <path d="M12 16h.01" />
                 </svg>
               </div>
-              <dt className="ml-14 truncate text-sm font-medium text-slate-400">
+              <dt className="ml-14 truncate text-sm font-medium text-slate-400 dark:text-white">
                 Pending
               </dt>
               <dd className="ml-14 flex items-baseline -mt-1">
-                <p className="text-2xl truncate font-semibold text-slate-600">
+                <p className="text-2xl truncate font-semibold text-slate-600 dark:text-white">
                   {filterData.filter((d) => d.status === "Pending").length}
                 </p>
               </dd>
@@ -240,16 +240,16 @@ const Newlayout = () => {
                   <path d="M8.5 15.5l7 -7" />
                 </svg>
               </div>
-              <dt className="ml-14 truncate text-sm font-medium text-slate-400">
+              <dt className="ml-14 truncate text-sm font-medium text-slate-400 dark:text-white">
                 Cancelled
               </dt>
               <dd className="ml-14 flex items-baseline -mt-1">
-                <p className="text-2xl truncate font-semibold text-slate-600">
+                <p className="text-2xl truncate font-semibold text-slate-600 dark:text-white">
                   {filterData.filter((d) => d.status === "Cancelled").length}
                 </p>
               </dd>
             </div>
-            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-indigo-200 ring-1 bg-indigo-50/50">
+            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-indigo-200 ring-1 bg-indigo-50/50 ">
               <div className="absolute rounded-md bg-indigo-100 p-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -268,15 +268,15 @@ const Newlayout = () => {
                   <path d="M12 3v3m0 12v3" />
                 </svg>
               </div>
-              <dt className="ml-14 truncate text-sm font-medium text-slate-400">
+              <dt className="ml-14 truncate text-sm font-medium text-slate-400 dark:text-white">
                 Sales
               </dt>
               <dd className="ml-14 flex items-baseline -mt-1">
-                <p className="text-2xl truncate font-semibold text-slate-600">
+                <p className="text-2xl truncate font-semibold text-slate-600 dark:text-white">
                   {`${filterData
                     .filter((d) => d.status !== "Cancelled")
                     .reduce((acc, item) => acc + item.totalPrice, 0)
-                    .toFixed(0)} tk`}
+                    .toFixed(2)} tk`}
                 </p>
               </dd>
             </div>
@@ -287,12 +287,12 @@ const Newlayout = () => {
             <div className="relative">
               <button
                 onClick={() => setSelectCelender(!selectCalender)}
-                className={`text-slate-600 ring-green-600/20 inline-flex items-center rounded-lg py-2 px-3 border-0 border-slate-300 text-left text-sm font-medium  ring-1 ring-inset ring-slate-300 focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500 gap-2`}
+                className={`text-slate-600 dark:text-white ring-green-600/20 inline-flex items-center rounded-lg py-2 px-3 border-0 border-slate-300  text-left text-sm font-medium  ring-1 ring-inset ring-slate-300 dark:ring-blue-500 focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500 gap-2`}
               >
                 {formattedDate === date ? "Today" : formattedDate}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-calendar text-slate-400"
+                  className="icon icon-tabler icon-tabler-calendar text-blue-500"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -336,15 +336,15 @@ const Newlayout = () => {
               Create
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="icon icon-tabler icon-tabler-circle-plus"
+                className="icon text-green-400 icon-tabler icon-tabler-circle-plus"
                 width="20"
                 height="20"
                 viewBox="0 0 24 24"
-                stroke-width="2"
+                strokeWidth="2"
                 stroke="currentColor"
                 fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
@@ -356,19 +356,19 @@ const Newlayout = () => {
 
           <Menu as="div" className="relative inline-block text-left">
             <div>
-              <Menu.Button className="group inline-flex justify-center w-full rounded-lg py-2 px-3 border-0 border-slate-300 text-left text-sm font-medium text-slate-600 ring-1 ring-inset ring-slate-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500 gap-2">
+              <Menu.Button className="group inline-flex justify-center w-full rounded-lg py-2 px-3 border-0 border-slate-300 text-left text-sm font-medium text-slate-600 dark:text-white ring-1 ring-inset ring-slate-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500 gap-2">
                 {filterOption}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-filter-cog text-slate-400"
+                  className="icon icon-tabler icon-tabler-filter-cog text-red-500 dark:text-yellow-400"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
-                  stroke-width="2"
+                  strokeWidth="2"
                   stroke="currentColor"
                   fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M12 20l-3 1v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v1.5" />
@@ -425,63 +425,63 @@ const Newlayout = () => {
                   <tr>
                     <th
                       scope="col"
-                      className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-slate-600 sm:pl-3"
+                      className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-slate-600 dark:text-white sm:pl-3"
                     >
                       SL
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-600"
+                      className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-600 dark:text-white"
                     >
                       Invoice
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-600"
+                      className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-600 dark:text-white"
                     >
                       Status
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-600"
+                      className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-600 dark:text-white"
                     >
                       Name
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-600"
+                      className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-600 dark:text-white"
                     >
                       Mobile
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-600"
+                      className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-600 dark:text-white"
                     >
                       Date
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-600"
+                      className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-600 dark:text-white"
                     >
                       Actions
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white">
+                <tbody className="bg-white dark:bg-black">
                   {filterData.map((person, personIdx) => (
                     <tr
                       key={person._id}
                       className={
-                        personIdx % 2 === 0 ? undefined : "bg-slate-50"
+                        personIdx % 2 === 0 ? undefined : "bg-slate-50 dark:bg-black"
                       }
                     >
-                      <td className="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-slate-400 sm:pl-3">
+                      <td className="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-slate-400  sm:pl-3">
                         {personIdx + 1}
                       </td>
                       <td className="whitespace-nowrap px-3 py-2 text-sm font-medium text-slate-400">
                         <Link
                           to={`/dashboard/invoice/${person._id}`}
-                          target="_blank"
+          
                           className="hover:text-green-500 active:text-green-600 ease-in duration-75"
                         >
                           {person?.invoice || person._id}
@@ -491,10 +491,10 @@ const Newlayout = () => {
                         <span
                           className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset  ${
                             person.status === "Pending"
-                              ? "text-amber-500 bg-amber-50 ring-amber-600/20"
+                              ? "text-amber-500 bg-amber-50 dark:bg-black ring-amber-600/20"
                               : person.status === "Shipped"
-                              ? "text-green-500 bg-green-50 ring-green-600/20"
-                              : "text-slate-500 bg-slate-50 ring-slate-600/20"
+                              ? "text-green-500 dark:bg-black bg-green-50 ring-green-600/20"
+                              : "text-slate-500 dark:bg-black bg-slate-50 ring-slate-600/20"
                           }`}
                         >
                           {person.status}
@@ -503,7 +503,7 @@ const Newlayout = () => {
                       <td className="whitespace-nowrap px-3 py-2 text-sm text-slate-400">
                         <Link
                           to={`/dashboard/invoice/${person._id}`}
-                          target="_blank"
+          
                           className="hover:text-green-500 active:text-green-600 ease-in duration-75"
                         >
                           {person.name}
@@ -520,7 +520,7 @@ const Newlayout = () => {
                         <div className="flex gap-2">
                           <Link
                             to={`/dashboard/invoice/${person._id}`}
-                            target="_blank"
+            
                             className="py-1.5 px-1.5 rounded-md bg-indigo-400 hover:bg-indigo-500 active:bg-indigo-600 ease-in duration-75 font-semibold text-white hover:text-white"
                           >
                             <svg
@@ -547,7 +547,7 @@ const Newlayout = () => {
 
                           <Link
                             to={`/editOrder/${person._id}`}
-                            target="_blank"
+            
                             className="py-1.5 px-1.5 rounded-md bg-blue-400 hover:bg-blue-500 active:bg-blue-600 ease-in duration-75 font-semibold text-white hover:text-white"
                           >
                             <svg
@@ -628,7 +628,7 @@ const Newlayout = () => {
                             </svg>
                           </button>
 
-                          <dialog id={person._id} className="modal bg-white text-black">
+                          <dialog id={person._id} className="modal bg-white dark:bg-black dark:text-white text-black">
                             <div className="modal-box text-left max-w-md overflow-hidden m-6">
                               <form method="dialog">
                                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
@@ -656,7 +656,7 @@ const Newlayout = () => {
                               </form>
                               <div className="font-bold text-lg text-left flex items-center gap-2 text-slate-600">
                                 {" "}
-                                <span className="bg-red-100 rounded-full p-1.5 text-red-500">
+                                <span className="bg-red-100  rounded-full p-1.5 text-red-500">
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     className="icon icon-tabler icon-tabler-alert-triangle "
@@ -728,7 +728,7 @@ const Newlayout = () => {
 
               {filterData.length === 0 && (
                 <div className="font-light text-slate-400 text-sm italic text-center w-full mx-auto">
-                  <div className="px-3 py-4 border-t border-slate-200">
+                  <div className="px-3 py-4 border-t  border-slate-200 dark:text-yellow-400">
                     No orders found for this date!
                   </div>
                 </div>
@@ -738,7 +738,7 @@ const Newlayout = () => {
         </div>
 
         <div className="pt-20">
-          <h3 className="text-xl font-bold text-slate-600">Website Summary</h3>
+          <h3 className="text-xl font-bold text-slate-600 dark:text-white">Website Summary</h3>
           <dl className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-5">
             <div className="overflow-hidden p-3 rounded-lg ring-inset ring-pink-200 ring-1 bg-pink-50/50">
               <div className="absolute rounded-md bg-pink-100 p-3">
@@ -761,11 +761,11 @@ const Newlayout = () => {
                   <path d="M6 5l14 1l-1 7h-13" />
                 </svg>
               </div>
-              <dt className="ml-14 truncate text-sm font-medium text-slate-400">
+              <dt className="ml-14 truncate text-sm font-medium text-slate-400 dark:text-white">
                 Orders
               </dt>
               <dd className="ml-14 flex items-baseline -mt-1">
-                <p className="text-2xl truncate font-semibold text-slate-600">
+                <p className="text-2xl truncate font-semibold text-slate-600 dark:text-white">
                   {WebData.length}
                 </p>
               </dd>
@@ -789,11 +789,11 @@ const Newlayout = () => {
                   <path d="M9 12l2 2l4 -4" />
                 </svg>
               </div>
-              <dt className="ml-14 truncate text-sm font-medium text-slate-400">
+              <dt className="ml-14 truncate text-sm font-medium text-slate-400 dark:text-white">
                 Completed
               </dt>
               <dd className="ml-14 flex items-baseline -mt-1">
-                <p className="text-2xl truncate font-semibold text-slate-600">
+                <p className="text-2xl truncate font-semibold text-slate-600 dark:text-white">
                   {WebData.filter((d) => d.status === "Shipped").length}
                 </p>
               </dd>
@@ -818,11 +818,11 @@ const Newlayout = () => {
                   <path d="M12 16h.01" />
                 </svg>
               </div>
-              <dt className="ml-14 truncate text-sm font-medium text-slate-400">
+              <dt className="ml-14 truncate text-sm font-medium text-slate-400 dark:text-white">
                 Pending
               </dt>
               <dd className="ml-14 flex items-baseline -mt-1">
-                <p className="text-2xl truncate font-semibold text-slate-600">
+                <p className="text-2xl truncate font-semibold text-slate-600 dark:text-white">
                   {WebData.filter((d) => d.status === "Pending").length}
                 </p>
               </dd>
@@ -847,11 +847,11 @@ const Newlayout = () => {
                   <path d="M8.5 15.5l7 -7" />
                 </svg>
               </div>
-              <dt className="ml-14 truncate text-sm font-medium text-slate-400">
+              <dt className="ml-14 truncate text-sm font-medium text-slate-400 dark:text-white">
                 Cancelled
               </dt>
               <dd className="ml-14 flex items-baseline -mt-1">
-                <p className="text-2xl truncate font-semibold text-slate-600">
+                <p className="text-2xl truncate font-semibold text-slate-600 dark:text-white">
                   {WebData.filter((d) => d.status === "Cancelled").length}
                 </p>
               </dd>
@@ -875,15 +875,15 @@ const Newlayout = () => {
                   <path d="M12 3v3m0 12v3" />
                 </svg>
               </div>
-              <dt className="ml-14 truncate text-sm font-medium text-slate-400">
+              <dt className="ml-14 truncate text-sm font-medium text-slate-400 dark:text-white">
                 Sales
               </dt>
               <dd className="ml-14 flex items-baseline -mt-1">
-                <p className="text-2xl truncate font-semibold text-slate-600">
+                <p className="text-2xl truncate font-semibold text-slate-600 dark:text-white">
                   {`${WebData
                     .filter((d) => d.status !== "Cancelled")
                     .reduce((acc, item) => acc + item.totalPrice, 0)
-                    .toFixed(0)} tk`}
+                    .toFixed(2)} tk`}
                 </p>
               </dd>
             </div>

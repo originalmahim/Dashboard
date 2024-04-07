@@ -45,7 +45,7 @@ const router = createBrowserRouter([
       {
         path: 'invoice/:id',
         element: <PrivateRaute><Invoice></Invoice></PrivateRaute>,
-        loader: ({params}) => fetch(`http://localhost:5000/singleitem/${params.id}`)
+        loader: ({params}) => fetch(`https://andalib-server-mauve.vercel.app/singleitem/${params.id}`)
       },
       {
         path: 'Users',
