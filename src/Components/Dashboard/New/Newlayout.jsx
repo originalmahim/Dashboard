@@ -133,7 +133,7 @@ const Newlayout = () => {
         <div className="pt-20">
           <h3 className="text-xl font-bold text-slate-600 dark:text-white">Daily Summary</h3>
           <dl className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-5">
-            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-pink-200 ring-1 bg-pink-50/50">
+            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-pink-200 ring-1 bg-pink-50/50 dark:bg-transparent">
               <div className="absolute rounded-md bg-pink-100 p-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -163,7 +163,7 @@ const Newlayout = () => {
                 </p>
               </dd>
             </div>
-            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-green-200 ring-1 bg-green-50/50">
+            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-green-200 ring-1 bg-green-50/50 dark:bg-transparent">
               <div className="absolute rounded-md bg-green-100 p-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -191,7 +191,7 @@ const Newlayout = () => {
                 </p>
               </dd>
             </div>
-            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-amber-200 ring-1 bg-amber-50/50">
+            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-amber-200 ring-1 bg-amber-50/50 dark:bg-transparent">
               <div className="absolute rounded-md bg-amber-100 p-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -220,7 +220,7 @@ const Newlayout = () => {
                 </p>
               </dd>
             </div>
-            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-slate-200 ring-1 bg-slate-50/50">
+            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-slate-200 ring-1 bg-slate-50/50 dark:bg-transparent">
               <div className="absolute rounded-md bg-slate-100 p-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -249,7 +249,7 @@ const Newlayout = () => {
                 </p>
               </dd>
             </div>
-            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-indigo-200 ring-1 bg-indigo-50/50 ">
+            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-indigo-200 ring-1 bg-indigo-50/50 dark:bg-transparent ">
               <div className="absolute rounded-md bg-indigo-100 p-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -740,7 +740,7 @@ const Newlayout = () => {
         <div className="pt-20">
           <h3 className="text-xl font-bold text-slate-600 dark:text-white">Website Summary</h3>
           <dl className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-5">
-            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-pink-200 ring-1 bg-pink-50/50">
+            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-pink-200 ring-1 bg-pink-50/50 dark:bg-transparent">
               <div className="absolute rounded-md bg-pink-100 p-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -770,7 +770,7 @@ const Newlayout = () => {
                 </p>
               </dd>
             </div>
-            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-green-200 ring-1 bg-green-50/50">
+            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-green-200 ring-1 bg-green-50/50 dark:bg-transparent">
               <div className="absolute rounded-md bg-green-100 p-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -798,7 +798,7 @@ const Newlayout = () => {
                 </p>
               </dd>
             </div>
-            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-amber-200 ring-1 bg-amber-50/50">
+            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-amber-200 ring-1 bg-amber-50/50 dark:bg-transparent">
               <div className="absolute rounded-md bg-amber-100 p-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -827,7 +827,7 @@ const Newlayout = () => {
                 </p>
               </dd>
             </div>
-            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-slate-200 ring-1 bg-slate-50/50">
+            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-slate-200 ring-1 bg-slate-50/50 dark:bg-transparent">
               <div className="absolute rounded-md bg-slate-100 p-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -856,7 +856,7 @@ const Newlayout = () => {
                 </p>
               </dd>
             </div>
-            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-indigo-200 ring-1 bg-indigo-50/50">
+            <div className="overflow-hidden p-3 rounded-lg ring-inset ring-indigo-200 ring-1 bg-indigo-50/50 dark:bg-transparent">
               <div className="absolute rounded-md bg-indigo-100 p-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
