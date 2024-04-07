@@ -72,7 +72,7 @@ const Invoice = () => {
     singleItem?.deliveryCharge + subTotalPrice - advanceAmount - discountAmount;
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-white dark:bg-black">
         <>
           <Helmet>
             <title>
@@ -80,9 +80,9 @@ const Invoice = () => {
             </title>
           </Helmet>
 
-          <div className="bg-white mx-auto max-w-7xl my-4" >
+          <div className="bg-white dark:bg-black mx-auto max-w-7xl my-4" >
           <div ref={componentRef}>
-              <div className="py-8 ring-0 ring-slate-100 sm:ring-1 sm:ring-inset sm:mx-0 sm:rounded-lg sm:p-8 lg:col-span-2 lg:row-span-2 lg:row-end-2 xl:p-16">
+              <div className="py-8 ring-0 ring-black dark:ring-yellow-400 sm:ring-1 sm:ring-inset sm:mx-0 sm:rounded-lg sm:p-8 lg:col-span-2 lg:row-span-2 lg:row-end-2 xl:p-16">
                 <nav
                   className={`mx-auto flex items-center justify-between gap-x-6 `}
                   aria-label="Global"
@@ -106,22 +106,22 @@ const Invoice = () => {
                 </nav>
                 <div className="flex justify-between">
                   <div className="mt-8 flex-1">
-                    <dt className="inline text-base font-semibold text-slate-600">
+                    <dt className="inline text-base font-semibold text-slate-600 dark:text-blue-500">
                       Invoice #
                     </dt>{" "}
-                    <dd className="inline text-sm font-semibold text-slate-400">
+                    <dd className="inline text-sm font-semibold text-slate-400 dark:text-white">
                       <time dateTime="2023-31-01">
                         {singleItem?.invoice || singleItem?._id}
                       </time>
                     </dd>
                   </div>
                   <div className="mt-8 flex-1 ml-8">
-                    <dt className="inline text-base font-semibold text-slate-600">
+                    <dt className="inline text-base font-semibold text-slate-600 dark:text-blue-500">
                       Date:
                     </dt>{" "}
-                    <dd className="inline text-sm font-semibold text-slate-400">
+                    <dd className="inline text-sm font-semibold text-slate-400 dark:text-white">
                       <time dateTime="2023-31-01">
-                        {singleItem?.date};{" "}
+                        {singleItem?.date} {" "}
                         {singleItem?.time && " " + singleItem?.time}
                       </time>
                     </dd>
@@ -129,33 +129,33 @@ const Invoice = () => {
                 </div>
                 <dl className="grid grid-cols-1 text-sm leading-6 sm:grid-cols-2">
                   <div className="mt-6 border-t border-slate-200 pt-6 sm:pr-4">
-                    <dt className="font-semibold text-slate-400">From</dt>
+                    <dt className="font-semibold text-slate-400 dark:text-blue-500">From</dt>
                     <dd className="mt-2">
-                      <span className="font-medium text-black">
+                      <span className="font-medium text-black dark:text-white">
                         Andalib
                       </span>
                       <br />
-                      <span className="font-medium text-slate-600">
+                      <span className="font-medium text-slate-600 dark:text-white">
                         Signboard, Jatrabari, Dhaka-1200
                       </span>
                       <br />
-                      <span className="font-medium text-slate-600">
+                      <span className="font-medium text-slate-600 dark:text-white">
                         01585753020
                       </span>
                     </dd>
                   </div>
                   <div className="mt-8 sm:mt-6 sm:border-t sm:border-slate-200 sm:pl-4 sm:pt-6">
-                    <dt className="font-semibold text-slate-400">To</dt>
+                    <dt className="font-semibold text-slate-400 dark:text-blue-500 ">To</dt>
                     <dd className="mt-2">
-                      <span className="font-medium text-slate-800">
+                      <span className="font-medium text-slate-800 dark:text-white">
                         {singleItem?.name}
                       </span>
                       <br />
-                      <span className="font-medium text-slate-800">
+                      <span className="font-medium text-slate-800 dark:text-white">
                         {singleItem?.address}
                       </span>
                       <br />
-                      <span className=" text-black font-medium">
+                      <span className=" text-black font-medium dark:text-white">
                         {singleItem?.phone}
                       </span>
                     </dd>
@@ -173,32 +173,32 @@ const Invoice = () => {
                     <tr>
                       <th
                         scope="col"
-                        className="py-3 pl-0 pr-2 font-semibold text-xs"
+                        className="py-3 pl-0 pr-2 font-semibold text-xs dark:text-blue-500"
                       >
                         SL
                       </th>
                       <th
                         scope="col"
-                        className="py-3 pl-0 pr-2 font-semibold text-xs"
+                        className="py-3 pl-0 pr-2 font-semibold text-xs dark:text-blue-500"
                       >
                         Ordered Items
                       </th>
 
                       <th
                         scope="col"
-                        className="py-3 pl-8 pr-0 text-right font-semibold text-xs table-cell"
+                        className="py-3 pl-8 pr-0 text-right font-semibold text-xs table-cell dark:text-blue-500"
                       >
                         Price
                       </th>
                       <th
                         scope="col"
-                        className="py-3 pl-8 pr-0 text-right font-semibold text-xs table-cell"
+                        className="py-3 pl-8 pr-0 text-right font-semibold text-xs table-cell dark:text-blue-500"
                       >
                         Qty
                       </th>
                       <th
                         scope="col"
-                        className="py-3 pl-8 pr-0 text-right font-semibold text-xs"
+                        className="py-3 pl-8 pr-0 text-right font-semibold text-xs dark:text-blue-500"
                       >
                         Amount
                       </th>
@@ -208,24 +208,24 @@ const Invoice = () => {
                     {singleItem &&
                       singleItem?.food.map((item, i) => (
                         <tr key={item.id} className="border-y border-slate-100">
-                          <td className="max-w-0 pr-2 px-0 py-4 align-top">
+                          <td className="max-w-0 pr-2 px-0 py-4 align-top dark:text-white">
                             {i + 1}
                           </td>
                           <td className="max-w-0 pr-2 px-0 py-4 align-top">
-                            <div className="font-medium text-slate-600">
+                            <div className="font-medium text-slate-600 dark:text-white">
                               {item.title}
                             </div>
-                            <div className="text-slate-400 font-light flex items-center gap-1">
+                            <div className="text-slate-400 font-light flex items-center gap-1 dark:text-white">
                               {`${item?.weightInGram} g`}
                             </div>
                           </td>
-                          <td className="py-4 pl-8 pr-0 text-right align-top tabular-nums text-slate-600 table-cell">
+                          <td className="py-4 pl-8 pr-0 text-right align-top tabular-nums text-slate-600 table-cell dark:text-white">
                             {item.price} tk
                           </td>
-                          <td className="py-4 pl-8 pr-0 text-right align-top tabular-nums text-slate-600 table-cell">
+                          <td className="py-4 pl-8 pr-0 text-right align-top tabular-nums text-slate-600 table-cell dark:text-white">
                             {item.quantity}
                           </td>
-                          <td className="py-4 pl-8 pr-0 text-right align-top tabular-nums text-slate-600">
+                          <td className="py-4 pl-8 pr-0 text-right align-top tabular-nums text-slate-600 dark:text-white">
                           {((item.price /
                                 (item.weight === "১ কেজি" ? 1000 : 500)) *
                                 item?.weightInGram * item?.quantity).toFixed(0)}{" "}
@@ -239,18 +239,18 @@ const Invoice = () => {
                       <th
                         scope="row"
                         colSpan={4}
-                        className="px-0 pb-0 pt-4 text-slate-400 sm:hidden text-xs font-semibold uppercase"
+                        className="px-0 pb-0 pt-4 text-slate-400 sm:hidden text-xs font-semibold dark:text-white uppercase"
                       >
                         Subtotal
                       </th>
                       <th
                         scope="row"
                         colSpan={4}
-                        className="hidden px-0 pb-0 pt-4 text-right font-semibold text-slate-400 sm:table-cell text-xs uppercase"
+                        className="hidden px-0 pb-0 pt-4 text-right font-semibold text-slate-400 sm:table-cell text-xs uppercase dark:text-white"
                       >
                         Subtotal
                       </th>
-                      <td className="pb-0 pl-8 pr-0 pt-4 text-right tabular-nums text-slate-600">
+                      <td className="pb-0 pl-8 pr-0 pt-4 text-right tabular-nums text-slate-600 dark:text-white">
                         {subTotalPrice?.toFixed(0)} tk
                       </td>
                     </tr>
@@ -259,18 +259,18 @@ const Invoice = () => {
                         <th
                           scope="row"
                           colSpan={4}
-                          className="px-0 pb-0 pt-4 text-slate-400 sm:hidden text-xs font-semibold uppercase"
+                          className="px-0 pb-0 pt-4 text-slate-400 sm:hidden text-xs font-semibold dark:text-white uppercase"
                         >
                           Advance
                         </th>
                         <th
                           scope="row"
                           colSpan={4}
-                          className="hidden px-0 pb-0 pt-4 text-right font-semibold text-slate-400 sm:table-cell text-xs uppercase"
+                          className="hidden px-0 pb-0 pt-4 text-right font-semibold text-slate-400 sm:table-cell text-xs uppercase dark:text-white"
                         >
                           Advance
                         </th>
-                        <td className="pb-0 pl-8 pr-0 pt-4 text-right tabular-nums text-slate-600">
+                        <td className="pb-0 pl-8 pr-0 pt-4 text-right tabular-nums text-slate-600 dark:text-white">
                           -{singleItem?.advance?.toFixed(0)} tk
                         </td>
                       </tr>
@@ -288,11 +288,11 @@ const Invoice = () => {
                         <th
                           scope="row"
                           colSpan={4}
-                          className="hidden px-0 pb-0 pt-4 text-right font-semibold text-slate-400 sm:table-cell text-xs uppercase"
+                          className="hidden px-0 pb-0 pt-4 text-right font-semibold text-slate-400 sm:table-cell text-xs uppercase dark:text-white"
                         >
                           Discount
                         </th>
-                        <td className="pb-0 pl-8 pr-0 pt-4 text-right tabular-nums text-slate-600">
+                        <td className="pb-0 pl-8 pr-0 pt-4 text-right tabular-nums text-slate-600 dark:text-white">
                           -{singleItem?.discount?.toFixed(0)} tk
                         </td>
                       </tr>
@@ -301,18 +301,18 @@ const Invoice = () => {
                       <th
                         scope="row"
                         colSpan={4}
-                        className="pt-4 font-semibold text-slate-400 sm:hidden text-xs uppercase"
+                        className="pt-4 font-semibold text-slate-400 sm:hidden text-xs uppercase dark:text-white"
                       >
                         Delivery
                       </th>
                       <th
                         scope="row"
                         colSpan={4}
-                        className="hidden pt-4 text-right font-semibold text-slate-400 sm:table-cell text-xs uppercase"
+                        className="hidden pt-4 text-right font-semibold text-slate-400 sm:table-cell text-xs uppercase dark:text-white"
                       >
                         Delivery
                       </th>
-                      <td className="pb-0 pl-8 pr-0 pt-4 text-right tabular-nums text-slate-600">
+                      <td className="pb-0 pl-8 pr-0 pt-4 text-right tabular-nums text-slate-600 dark:text-white">
                         {singleItem?.deliveryCharge?.toFixed(0)} tk
                       </td>
                     </tr>
@@ -320,18 +320,18 @@ const Invoice = () => {
                       <th
                         scope="row"
                         colSpan={4}
-                        className="px-0 py-4 text-slate-400 sm:hidden text-xs font-semibold uppercase"
+                        className="px-0 py-4 text-slate-400 sm:hidden text-xs font-semibold uppercase dark:text-white"
                       >
                         COD Charge 1%
                       </th>
                       <th
                         scope="row"
                         colSpan={4}
-                        className="hidden px-0 py-4 text-right font-semibold text-slate-400 sm:table-cell text-xs uppercase"
+                        className="hidden px-0 py-4 text-right font-semibold text-slate-400 sm:table-cell text-xs uppercase dark:text-white"
                       >
                         COD Charge 1%
                       </th>
-                      <td className="pl-8 pr-0 py-4 text-right tabular-nums text-slate-600">
+                      <td className="pl-8 pr-0 py-4 text-right tabular-nums text-slate-600 dark:text-white">
                         {(grandTotal * 0.01).toFixed(0)} tk
                       </td>
                     </tr>
@@ -339,24 +339,24 @@ const Invoice = () => {
                       <th
                         scope="row"
                         colSpan={4}
-                        className="pt-4 font-semibold text-slate-600 sm:hidden text-xs uppercase"
+                        className="pt-4 font-semibold text-slate-600 sm:hidden text-xs uppercase  "
                       >
                         Total
                       </th>
                       <th
                         scope="row"
                         colSpan={4}
-                        className="hidden pt-4 text-right font-semibold text-slate-600 sm:table-cell text-xs uppercase"
+                        className="hidden pt-4 text-right font-semibold text-slate-600 sm:table-cell text-xs uppercase dark:text-white"
                       >
                         Total
                       </th>
-                      <td className="pb-0 pl-8 pr-0 pt-4 text-right font-semibold tabular-nums text-slate-600">
+                      <td className="pb-0 pl-8 pr-0 pt-4 text-right font-semibold tabular-nums text-slate-600 dark:text-white">
                         {(grandTotal + grandTotal * 0.01)?.toFixed(0)} tk
                       </td>
                     </tr>
                   </tfoot>
                 </table>
-                <div className="font-bold text-slate-400 text-xs italic mt-4 md:mt-2 text-center">
+                <div className="font-bold text-slate-400 text-xs italic mt-4 md:mt-2 text-center dark:text-blue-500">
                   Thank you for shopping with us. Please contact our helpline or
                   chat with us for any issues. Have a nice day.
                 </div>
