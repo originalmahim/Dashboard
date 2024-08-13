@@ -25,7 +25,6 @@ const Newlayout = () => {
   const [allData, setAllData] = useState([]);
   const [dataUpdated, setDataUpdated] = useState(false);
   const [filterData, setFilterData] = useState([]);
-  // const [allOrders, setAllOrders] = useState();
   const [filterOption, setFilterOption] = useState("All Orders");
   const today = new Date();
   const nextMonth = addMonths(new Date(), 0);
@@ -130,7 +129,7 @@ const Newlayout = () => {
   return (
     <div className=" bg-white dark:bg-black">
       
-        <div className="pt-20">
+        <div className="pt-[10px]">
           <h3 className="text-xl font-bold text-slate-600 dark:text-white">Daily Summary</h3>
           <dl className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-5">
             <div className="overflow-hidden p-3 rounded-lg ring-inset ring-pink-200 ring-1 bg-pink-50/50 dark:bg-transparent">
@@ -330,10 +329,9 @@ const Newlayout = () => {
               </div>
             </div>
             <Link
-              to={"/createOrder"}
               className={`py-2 px-3 rounded-lg bg-slate-500 hover:bg-slate-600 active:bg-slate-700 ease-in duration-75 text-sm font-semibold text-white hover:text-white flex items-center gap-2`}
             >
-              Create
+              Print All Invoice
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="icon text-green-400 icon-tabler icon-tabler-circle-plus"
@@ -876,14 +874,14 @@ const Newlayout = () => {
                 </svg>
               </div>
               <dt className="ml-14 truncate text-sm font-medium text-slate-400 dark:text-white">
-                Sales
+                Total Sales
               </dt>
               <dd className="ml-14 flex items-baseline -mt-1">
                 <p className="text-2xl truncate font-semibold text-slate-600 dark:text-white">
                   {`${WebData
                     .filter((d) => d.status !== "Cancelled")
                     .reduce((acc, item) => acc + item.totalPrice, 0)
-                    .toFixed(2)} tk`}
+                    .toFixed(1)} Taka`}
                 </p>
               </dd>
             </div>

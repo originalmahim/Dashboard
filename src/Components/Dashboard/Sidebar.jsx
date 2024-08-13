@@ -171,18 +171,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                   Manage Products
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  to="CreateOrder"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black duration-300 ease-in-out hover:bg-pink-400 dark:hover:bg-meta-4 ${
-                    pathname.includes('CreateOrder') &&
-                    'bg-pink-400 text-white dark:bg-meta-4'
-                  }`}
-                >
-                  <IoIosListBox></IoIosListBox>
-                  Create Order
-                </NavLink>
-              </li>
+              
               <li>
                 <NavLink
                   to="Cupons"

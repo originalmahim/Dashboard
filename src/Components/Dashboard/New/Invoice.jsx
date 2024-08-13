@@ -80,7 +80,7 @@ const Invoice = () => {
             </title>
           </Helmet>
 
-          <div className="bg-white dark:bg-black mx-auto max-w-7xl my-4" >
+          <div className="bg-white dark:bg-black mx-auto px-8 max-w-7xl my-4" >
           <div ref={componentRef}>
               <div className="py-8 ring-0 ring-black dark:ring-yellow-400 sm:ring-1 sm:ring-inset sm:mx-0 sm:rounded-lg sm:p-8 lg:col-span-2 lg:row-span-2 lg:row-end-2 xl:p-16">
                 <nav
